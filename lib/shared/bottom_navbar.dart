@@ -5,7 +5,7 @@ import '../theme.dart';
 import '../assets.dart';
 
 class BottomNavBar extends StatelessWidget {
-  bool isSelected = true;
+  //bool isSelected = true;
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(

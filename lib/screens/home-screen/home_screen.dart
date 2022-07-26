@@ -8,6 +8,39 @@ import '../../theme.dart';
 import '../../shared/bottom_navbar.dart';
 
 class HomeScreen extends StatelessWidget {
+  List<LocationCard> locationCardList = [
+    LocationCard(
+        locationImage: Assets.images.london,
+        locationName: 'London',
+        locationProperties: 5102),
+    LocationCard(
+        locationImage: Assets.images.tokyo,
+        locationName: 'Tokyo',
+        locationProperties: 11251),
+    LocationCard(
+        locationImage: Assets.images.barcelona,
+        locationName: 'Barcelona',
+        locationProperties: 21104),
+    LocationCard(
+        locationImage: Assets.images.newYork,
+        locationName: 'New York',
+        locationProperties: 1381),
+  ];
+  List<HomesGuestsLoveCard> homeGuestsLoveList = [
+    HomesGuestsLoveCard(
+        image: Assets.images.barcelona,
+        name: 'Sugar & Spice Apartments',
+        location: 'Barcelona',
+        cost: 'EUR 35',
+        rating: 3),
+    HomesGuestsLoveCard(
+        image: Assets.images.london,
+        name: 'Sugar & Spice Apartments',
+        location: 'London',
+        cost: 'EUR 55',
+        rating: 4),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,7 +49,7 @@ class HomeScreen extends StatelessWidget {
       home: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: TopNavBar(
-          title: 'Staycaution',
+          title: 'Staycation',
           actionIcons: [
             SvgPicture.asset(
               Assets.icons.search,
@@ -57,30 +90,13 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   GridView.count(
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     crossAxisSpacing: 20,
                     mainAxisSpacing: 20,
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     crossAxisCount: 2,
-                    children: [
-                      LocationCard(
-                          locationImage: Assets.images.london,
-                          locationName: 'London',
-                          locationProperties: 5102),
-                      LocationCard(
-                          locationImage: Assets.images.tokyo,
-                          locationName: 'Tokyo',
-                          locationProperties: 11251),
-                      LocationCard(
-                          locationImage: Assets.images.barcelona,
-                          locationName: 'Barcelona',
-                          locationProperties: 21104),
-                      LocationCard(
-                          locationImage: Assets.images.newYork,
-                          locationName: 'New York',
-                          locationProperties: 1381),
-                    ],
+                    children: locationCardList,
                   ),
                 ],
               ),
@@ -111,20 +127,7 @@ class HomeScreen extends StatelessWidget {
                     height: 316,
                     child: ListView(
                       scrollDirection: Axis.horizontal,
-                      children: [
-                        HomesGuestsLoveCard(
-                            image: Assets.images.barcelona,
-                            name: 'Sugar & Spice Apartments',
-                            location: 'Barcelona',
-                            cost: 'EUR 35',
-                            rating: 3),
-                        HomesGuestsLoveCard(
-                            image: Assets.images.london,
-                            name: 'Sugar & Spice Apartments',
-                            location: 'London',
-                            cost: 'EUR 55',
-                            rating: 4)
-                      ],
+                      children: homeGuestsLoveList,
                     ),
                   )
                 ],
