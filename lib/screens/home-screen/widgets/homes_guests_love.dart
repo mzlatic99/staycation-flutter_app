@@ -1,68 +1,76 @@
 import 'package:flutter/material.dart';
+import '../../../models/accommodation.dart';
+import '../../../http.dart';
+import '../../../shared/homes_guests_love_card.dart';
 import '../../../theme.dart';
 
-class HomesGuestsLoveCard extends StatelessWidget {
-  final String image;
-  final String name;
-  final String location;
-  final String cost;
-  final int rating;
+class HomesGuestsLove extends StatelessWidget {
+  const HomesGuestsLove({
+    Key? key,
+    required List<HomeGuestsLoveCard> homesGuestsLoveList,
+  })  : _homesGuestsLoveList = homesGuestsLoveList,
+        super(key: key);
 
-  HomesGuestsLoveCard(
-      {required this.image,
-      required this.name,
-      required this.location,
-      required this.cost,
-      required this.rating});
-
-  final List<Widget> _starsRating = [];
+  final List<HomeGuestsLoveCard> _homesGuestsLoveList;
 
   @override
   Widget build(BuildContext context) {
-    for (int i = 0; i < rating; i++) {
-      _starsRating.add(Icon(
-        Icons.star,
-        color: ThemeColors.coral400,
-      ));
-    }
-
-    return GestureDetector(
-      onTap: () {},
-      child: Container(
-        width: MediaQuery.of(context).size.width / 1.7,
-        padding: const EdgeInsets.only(left: 20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Image.asset(
-                image,
-                fit: BoxFit.cover,
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(20, 40, 20, 0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Homes guests love',
+                style: textTheme.headline5,
               ),
-            ),
-            Text(
-              name,
-              style: textTheme.bodyText1!
-                  .merge(TextStyle(color: ThemeColors.black)),
-            ),
-            Text(
-              location,
-              style: textTheme.bodyText2!
-                  .merge(TextStyle(color: ThemeColors.grey300)),
-            ),
-            Text(
-              cost,
-              style: textTheme.bodyText1!.merge(TextStyle(
-                  color: ThemeColors.teal800, fontWeight: FontWeight.w400)),
-            ),
-            Row(
-              children: _starsRating,
-            )
-          ],
+              TextButton(
+                  onPressed: () {},
+                  child: Text('VIEW MORE',
+                      style: textTheme.button!.merge(
+                        TextStyle(
+                          color: ThemeColors.mint400,
+                        ),
+                      )))
+            ],
+          ),
         ),
-      ),
+        SizedBox(
+          height: 316,
+          child: FutureBuilder(
+            future: http.getPopularHomes(),
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+              if (snapshot.hasError) {
+                return const Center(child: Text('error'));
+              }
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(
+                    child: CircularProgressIndicator(
+                  color: ThemeColors.mint500,
+                ));
+              }
+              List<Accommodation> accommodations = snapshot.data;
+              for (var accommodation in accommodations) {
+                _homesGuestsLoveList.add(HomeGuestsLoveCard(
+                    isHorizontalList: true,
+                    id: accommodation.id,
+                    imageUrl: accommodation.imageUrl,
+                    title: accommodation.title,
+                    location: accommodation.location,
+                    price: accommodation.price,
+                    categorization: accommodation.categorization));
+              }
+              return ListView(
+                scrollDirection: Axis.horizontal,
+                children: _homesGuestsLoveList,
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 }

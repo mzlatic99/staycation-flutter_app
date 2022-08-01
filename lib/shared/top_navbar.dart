@@ -27,15 +27,32 @@ class TopNavBar extends StatelessWidget with PreferredSizeWidget {
     }
     return AppBar(
       automaticallyImplyLeading: false,
-      title: Text(
-        title,
-        style: textTheme.headline6!.merge(
-          TextStyle(
-            color: ThemeColors.teal800,
-          ),
-        ),
-      ),
-      leading: leading,
+      title: leading != null
+          ? Row(
+              children: [
+                leading!,
+                const SizedBox(
+                  width: 32,
+                ),
+                Text(
+                  title,
+                  style: textTheme.headline6!.merge(
+                    TextStyle(
+                      color: ThemeColors.teal800,
+                    ),
+                  ),
+                ),
+              ],
+            )
+          : Text(
+              title,
+              style: textTheme.headline6!.merge(
+                TextStyle(
+                  color: ThemeColors.teal800,
+                ),
+              ),
+            ),
+      // leading: leading,
       actions: newActionIcons,
     );
   }

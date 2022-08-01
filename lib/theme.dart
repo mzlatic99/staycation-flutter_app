@@ -25,8 +25,6 @@ class ThemeColors {
   static Color coral500 = const Color(0xffEF976B);
   static Color coral400 = const Color(0xffF3B08E);
   static Color red500 = const Color(0xffEF6B6B);
-//TODO: add all colors
-
 }
 
 final TextTheme textTheme = TextTheme(
@@ -92,19 +90,19 @@ final TextTheme textTheme = TextTheme(
         fontSize: 16,
         fontWeight: FontWeight.w400,
         height: 1.24,
-        letterSpacing: 0.14)
-//TODO: add all text styles
-    );
+        letterSpacing: 0.14));
 
 ThemeData theme = ThemeData(
     scaffoldBackgroundColor: Colors.white,
     appBarTheme: AppBarTheme(
-      color: Colors.white,
-      elevation: 4,
-      iconTheme: IconThemeData(color: ThemeColors.teal800),
-      actionsIconTheme: IconThemeData(color: ThemeColors.teal800),
-      shadowColor: ThemeColors.grey300,
-    ),
+        color: Colors.white,
+        shadowColor: ThemeColors.grey300,
+        elevation: 0,
+        shape: Border(
+            bottom: BorderSide(
+                width: 4,
+                color: ThemeColors.grey200.withOpacity(0.25),
+                style: BorderStyle.solid))),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         padding: const EdgeInsets.symmetric(vertical: 8),

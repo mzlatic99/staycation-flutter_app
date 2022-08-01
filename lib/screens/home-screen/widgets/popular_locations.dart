@@ -1,59 +1,75 @@
-import 'package:devcademy_flutter/theme.dart';
 import 'package:flutter/material.dart';
+import '../../../models/location.dart';
+import '../../../http.dart';
+import '../../../shared/popular_locations_card.dart';
+import '../../../theme.dart';
 
-class LocationCard extends StatelessWidget {
-  final String locationImage;
-  final String locationName;
-  final int locationProperties;
+class PopularLocations extends StatelessWidget {
+  const PopularLocations({
+    Key? key,
+    required List<LocationCard> locationCardList,
+  })  : _locationCardList = locationCardList,
+        super(key: key);
 
-  LocationCard(
-      {required this.locationImage,
-      required this.locationName,
-      required this.locationProperties});
+  final List<LocationCard> _locationCardList;
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      fit: StackFit.expand,
+    return Column(
       children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(12),
-          child: Container(
-            decoration: BoxDecoration(
-                image: DecorationImage(
-              image: AssetImage(locationImage),
-              fit: BoxFit.cover,
-            )),
-          ),
-        ),
-        Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  ThemeColors.black.withOpacity(0.3),
-                  ThemeColors.white.withOpacity(0)
-                ],
-              )),
-        ),
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                locationName,
-                style: textTheme.bodyText1,
+                'Popular locations',
+                style: textTheme.headline5,
               ),
-              Text(
-                '$locationProperties properties',
-                style: textTheme.bodyText2,
-              )
+              TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    'VIEW MORE',
+                    style: textTheme.button!.merge(
+                      TextStyle(
+                        color: ThemeColors.mint400,
+                      ),
+                    ),
+                  ))
             ],
           ),
-        )
+        ),
+        FutureBuilder(
+          future: http.getPopularLocations(),
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            if (snapshot.hasError) {
+              return const Center(child: Text('error'));
+            }
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                  child: CircularProgressIndicator(
+                color: ThemeColors.mint500,
+              ));
+            }
+            List<Location> locations = snapshot.data;
+            for (var location in locations) {
+              _locationCardList.add(LocationCard(
+                  id: location.id,
+                  locationImage: location.imageUrl,
+                  locationName: location.locationName,
+                  locationProperties: location.properties));
+            }
+            return GridView.count(
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              crossAxisSpacing: 20,
+              mainAxisSpacing: 20,
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              crossAxisCount: 2,
+              children: _locationCardList,
+            );
+          },
+        ),
       ],
     );
   }
