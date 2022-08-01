@@ -34,9 +34,9 @@ class HomeGuestsLoveCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> _starsRating = [];
+    final List<Widget> starsRating = [];
     for (int i = 0; i < categorization; i++) {
-      _starsRating.add(Icon(
+      starsRating.add(Icon(
         Icons.star,
         color: ThemeColors.coral400,
       ));
@@ -82,7 +82,7 @@ class HomeGuestsLoveCard extends StatelessWidget {
                           fontWeight: FontWeight.w400)),
                     ),
                     Row(
-                      children: _starsRating,
+                      children: starsRating,
                     )
                   ],
                 )
@@ -129,7 +129,7 @@ class HomeGuestsLoveCard extends StatelessWidget {
                                   fontWeight: FontWeight.w400)),
                             ),
                             Row(
-                              children: _starsRating,
+                              children: starsRating,
                             )
                           ],
                         ),

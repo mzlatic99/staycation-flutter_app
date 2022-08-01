@@ -47,11 +47,11 @@ class LocationCard extends StatelessWidget {
             children: [
               Text(
                 locationName,
-                style: textTheme.bodyText1,
+                style: textTheme.bodyText1!.copyWith(color: ThemeColors.white),
               ),
               Text(
                 '$locationProperties properties',
-                style: textTheme.bodyText2,
+                style: textTheme.bodyText2!.copyWith(color: ThemeColors.white),
               )
             ],
           ),

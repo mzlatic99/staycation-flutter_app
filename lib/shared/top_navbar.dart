@@ -11,9 +11,7 @@ class TopNavBar extends StatelessWidget with PreferredSizeWidget {
   TopNavBar({required this.title, this.actionIcons, this.leading});
 
   List<Widget> newActionIcons = [];
-
-  @override
-  Widget build(BuildContext context) {
+  void addActionIcons() {
     for (int i = 0; i < actionIcons!.length; i++) {
       newActionIcons.add(
         Padding(
@@ -24,6 +22,13 @@ class TopNavBar extends StatelessWidget with PreferredSizeWidget {
           ),
         ),
       );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (actionIcons != null) {
+      addActionIcons();
     }
     return AppBar(
       automaticallyImplyLeading: false,
