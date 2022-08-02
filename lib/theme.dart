@@ -95,6 +95,7 @@ ThemeData theme = ThemeData(
     scaffoldBackgroundColor: Colors.white,
     appBarTheme: AppBarTheme(
         color: Colors.white,
+        foregroundColor: ThemeColors.teal800,
         shadowColor: ThemeColors.grey300,
         elevation: 0,
         shape: Border(
