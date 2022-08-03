@@ -47,14 +47,19 @@ class HomesGuestsLoveScreen extends StatelessWidget {
                     }
                     List<Accommodation> accommodations = snapshot.data;
                     for (var accommodation in accommodations) {
-                      _homesGuestsLoveList.add(HomeGuestsLoveCard(
+                      _homesGuestsLoveList.add(
+                        HomeGuestsLoveCard(
                           isHorizontalList: false,
-                          id: accommodation.id,
-                          imageUrl: accommodation.imageUrl,
-                          title: accommodation.title,
-                          location: accommodation.location,
-                          price: accommodation.price,
-                          categorization: accommodation.categorization));
+                          accommodation: Accommodation(
+                            id: accommodation.id,
+                            imageUrl: accommodation.imageUrl,
+                            title: accommodation.title,
+                            location: accommodation.location,
+                            price: accommodation.price,
+                            categorization: accommodation.categorization,
+                          ),
+                        ),
+                      );
                     }
                     return Expanded(
                       child: ListView(

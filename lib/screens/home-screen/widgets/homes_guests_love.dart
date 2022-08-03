@@ -8,13 +8,7 @@ import '../../../shared/homes_guests_love_card.dart';
 import 'title_and_button.dart';
 
 class HomesGuestsLove extends StatelessWidget {
-  const HomesGuestsLove({
-    Key? key,
-    required List<HomeGuestsLoveCard> homesGuestsLoveList,
-  })  : _homesGuestsLoveList = homesGuestsLoveList,
-        super(key: key);
-
-  final List<HomeGuestsLoveCard> _homesGuestsLoveList;
+  final List<HomeGuestsLoveCard> _accommodationList = [];
 
   @override
   Widget build(BuildContext context) {
@@ -45,18 +39,23 @@ class HomesGuestsLove extends StatelessWidget {
               List<Accommodation> accommodations = snapshot.data;
 
               for (var accommodation in accommodations) {
-                _homesGuestsLoveList.add(HomeGuestsLoveCard(
+                _accommodationList.add(
+                  HomeGuestsLoveCard(
                     isHorizontalList: true,
-                    id: accommodation.id,
-                    imageUrl: accommodation.imageUrl,
-                    title: accommodation.title,
-                    location: accommodation.location,
-                    price: accommodation.price,
-                    categorization: accommodation.categorization));
+                    accommodation: Accommodation(
+                      id: accommodation.id,
+                      imageUrl: accommodation.imageUrl,
+                      title: accommodation.title,
+                      location: accommodation.location,
+                      price: accommodation.price,
+                      categorization: accommodation.categorization,
+                    ),
+                  ),
+                );
               }
               return ListView(
                 scrollDirection: Axis.horizontal,
-                children: _homesGuestsLoveList,
+                children: _accommodationList,
               );
             },
           ),

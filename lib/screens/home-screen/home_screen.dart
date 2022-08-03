@@ -38,7 +38,7 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             children: [
               PopularLocations(locationCardList: _locationCardList),
-              HomesGuestsLove(homesGuestsLoveList: _homesGuestsLoveList)
+              HomesGuestsLove(),
             ],
           ),
         ),
