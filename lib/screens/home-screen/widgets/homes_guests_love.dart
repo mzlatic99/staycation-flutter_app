@@ -1,68 +1,66 @@
 import 'package:flutter/material.dart';
+
+import '../../../http.dart';
 import '../../../theme.dart';
+import '../../../models/accommodation.dart';
 
-class HomesGuestsLoveCard extends StatelessWidget {
-  final String image;
-  final String name;
-  final String location;
-  final String cost;
-  final int rating;
+import '../../../shared/homes_guests_love_card.dart';
+import 'title_and_button.dart';
 
-  HomesGuestsLoveCard(
-      {required this.image,
-      required this.name,
-      required this.location,
-      required this.cost,
-      required this.rating});
-
-  final List<Widget> _starsRating = [];
+class HomesGuestsLove extends StatelessWidget {
+  final List<HomeGuestsLoveCard> _accommodationList = [];
 
   @override
   Widget build(BuildContext context) {
-    for (int i = 0; i < rating; i++) {
-      _starsRating.add(Icon(
-        Icons.star,
-        color: ThemeColors.coral400,
-      ));
-    }
-
-    return GestureDetector(
-      onTap: () {},
-      child: Container(
-        width: MediaQuery.of(context).size.width / 1.7,
-        padding: const EdgeInsets.only(left: 20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Image.asset(
-                image,
-                fit: BoxFit.cover,
-              ),
-            ),
-            Text(
-              name,
-              style: textTheme.bodyText1!
-                  .merge(TextStyle(color: ThemeColors.black)),
-            ),
-            Text(
-              location,
-              style: textTheme.bodyText2!
-                  .merge(TextStyle(color: ThemeColors.grey300)),
-            ),
-            Text(
-              cost,
-              style: textTheme.bodyText1!.merge(TextStyle(
-                  color: ThemeColors.teal800, fontWeight: FontWeight.w400)),
-            ),
-            Row(
-              children: _starsRating,
-            )
-          ],
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(20, 40, 20, 0),
+          child: TitleAndButton(
+            title: 'Homes guests love',
+            function: () {},
+          ),
         ),
-      ),
+        SizedBox(
+          height: 316,
+          child: FutureBuilder(
+            future: http.getPopularHomes(),
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+              if (snapshot.hasError) {
+                return const Center(child: Text('error'));
+              }
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(
+                    child: CircularProgressIndicator(
+                  color: ThemeColors.mint500,
+                ));
+              }
+              List<Accommodation> accommodations = snapshot.data;
+
+              for (var accommodation in accommodations) {
+                _accommodationList.add(
+                  HomeGuestsLoveCard(
+                    isHorizontalList: true,
+                    accommodation: Accommodation(
+                      id: accommodation.id,
+                      imageUrl: accommodation.imageUrl,
+                      title: accommodation.title,
+                      location: accommodation.location,
+                      price: accommodation.price,
+                      categorization: accommodation.categorization,
+                    ),
+                  ),
+                );
+              }
+              return ListView(
+                scrollDirection: Axis.horizontal,
+                children: _accommodationList,
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 }

@@ -1,6 +1,6 @@
-import 'package:devcademy_flutter/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
 import '../theme.dart';
 
 class TopNavBar extends StatelessWidget with PreferredSizeWidget {
@@ -11,9 +11,7 @@ class TopNavBar extends StatelessWidget with PreferredSizeWidget {
   TopNavBar({required this.title, this.actionIcons, this.leading});
 
   List<Widget> newActionIcons = [];
-
-  @override
-  Widget build(BuildContext context) {
+  void addActionIcons() {
     for (int i = 0; i < actionIcons!.length; i++) {
       newActionIcons.add(
         Padding(
@@ -25,17 +23,27 @@ class TopNavBar extends StatelessWidget with PreferredSizeWidget {
         ),
       );
     }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (actionIcons != null) {
+      addActionIcons();
+    }
     return AppBar(
       automaticallyImplyLeading: false,
-      title: Text(
-        title,
-        style: textTheme.headline6!.merge(
-          TextStyle(
-            color: ThemeColors.teal800,
-          ),
-        ),
-      ),
-      leading: leading,
+      title: leading != null
+          ? Row(
+              children: [
+                leading!,
+                const SizedBox(
+                  width: 32,
+                ),
+                Text(title, style: textTheme.headline6),
+              ],
+            )
+          : Text(title, style: textTheme.headline6),
+      // leading: leading,
       actions: newActionIcons,
     );
   }
