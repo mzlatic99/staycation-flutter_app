@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../models/accommodation.dart';
 import '../../../theme.dart';
 
+import 'stars_list.dart';
+
 class HomeGuestsLoveCard extends StatelessWidget {
   final Accommodation accommodation;
   final bool isHorizontalList;
@@ -13,14 +15,6 @@ class HomeGuestsLoveCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> starsRating = [];
-    for (int i = 0; i < accommodation.categorization; i++) {
-      starsRating.add(Icon(
-        Icons.star,
-        color: ThemeColors.coral400,
-      ));
-    }
-
     return GestureDetector(
       onTap: () {},
       child: Container(
@@ -60,9 +54,7 @@ class HomeGuestsLoveCard extends StatelessWidget {
                           color: ThemeColors.teal800,
                           fontWeight: FontWeight.w400)),
                     ),
-                    Row(
-                      children: starsRating,
-                    )
+                    StarsList(categorization: accommodation.categorization)
                   ],
                 )
               : Container(
@@ -107,9 +99,8 @@ class HomeGuestsLoveCard extends StatelessWidget {
                                   color: ThemeColors.teal800,
                                   fontWeight: FontWeight.w400)),
                             ),
-                            Row(
-                              children: starsRating,
-                            )
+                            StarsList(
+                                categorization: accommodation.categorization),
                           ],
                         ),
                       )

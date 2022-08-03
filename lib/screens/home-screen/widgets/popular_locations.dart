@@ -8,13 +8,7 @@ import '../../../shared/popular_locations_card.dart';
 import 'title_and_button.dart';
 
 class PopularLocations extends StatelessWidget {
-  const PopularLocations({
-    Key? key,
-    required List<LocationCard> locationCardList,
-  })  : _locationCardList = locationCardList,
-        super(key: key);
-
-  final List<LocationCard> _locationCardList;
+  final List<LocationCard> _locationCardList = [];
 
   @override
   Widget build(BuildContext context) {
@@ -42,10 +36,11 @@ class PopularLocations extends StatelessWidget {
             List<Location> locations = snapshot.data;
             for (var location in locations) {
               _locationCardList.add(LocationCard(
-                  id: location.id,
-                  locationImage: location.imageUrl,
-                  locationName: location.locationName,
-                  locationProperties: location.properties));
+                  location: Location(
+                      id: location.id,
+                      locationName: location.locationName,
+                      imageUrl: location.imageUrl,
+                      properties: location.properties)));
             }
             return GridView.count(
               physics: const NeverScrollableScrollPhysics(),

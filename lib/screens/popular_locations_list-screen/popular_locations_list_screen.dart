@@ -1,11 +1,13 @@
-import '../../assets.dart';
 import 'package:flutter/material.dart';
-import '../../shared/top_navbar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../assets.dart';
 import '../../theme.dart';
 import '../../http.dart';
 import '../../models/location.dart';
+
 import '../../shared/popular_locations_card.dart';
+import '../../shared/top_navbar.dart';
 
 class PopularLocationsListScreen extends StatelessWidget {
   final List<LocationCard> _locationCardList = [];
@@ -37,11 +39,15 @@ class PopularLocationsListScreen extends StatelessWidget {
               }
               List<Location> locations = snapshot.data;
               for (var location in locations) {
-                _locationCardList.add(LocationCard(
-                    id: location.id,
-                    locationImage: location.imageUrl,
-                    locationName: location.locationName,
-                    locationProperties: location.properties));
+                _locationCardList.add(
+                  LocationCard(
+                    location: Location(
+                        id: location.id,
+                        locationName: location.locationName,
+                        imageUrl: location.imageUrl,
+                        properties: location.properties),
+                  ),
+                );
               }
               return GridView.count(
                 shrinkWrap: true,

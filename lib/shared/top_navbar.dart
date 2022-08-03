@@ -1,6 +1,6 @@
-import 'package:devcademy_flutter/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
 import '../theme.dart';
 
 class TopNavBar extends StatelessWidget with PreferredSizeWidget {

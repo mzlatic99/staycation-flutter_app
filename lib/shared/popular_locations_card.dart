@@ -1,17 +1,12 @@
-import 'package:devcademy_flutter/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:devcademy_flutter/theme.dart';
+
+import '../models/location.dart';
 
 class LocationCard extends StatelessWidget {
-  final String id;
-  final String locationImage;
-  final String locationName;
-  final int locationProperties;
+  final Location location;
 
-  LocationCard(
-      {required this.id,
-      required this.locationImage,
-      required this.locationName,
-      required this.locationProperties});
+  LocationCard({required this.location});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +18,7 @@ class LocationCard extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
                 image: DecorationImage(
-              image: NetworkImage(locationImage),
+              image: NetworkImage(location.imageUrl),
               fit: BoxFit.cover,
             )),
           ),
@@ -46,11 +41,11 @@ class LocationCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                locationName,
+                location.locationName,
                 style: textTheme.bodyText1!.copyWith(color: ThemeColors.white),
               ),
               Text(
-                '$locationProperties properties',
+                '${location.properties} properties',
                 style: textTheme.bodyText2!.copyWith(color: ThemeColors.white),
               )
             ],

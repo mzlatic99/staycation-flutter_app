@@ -6,6 +6,8 @@ import '../../models/accommodation.dart';
 import '../../http.dart';
 import '../../theme.dart';
 
+import '../../shared/stars_list.dart';
+
 class AccommodationDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -43,17 +45,11 @@ class AccommodationDetailsScreen extends StatelessWidget {
                 ));
               }
               List<Accommodation> accommodations = snapshot.data;
-              final List<Widget> starsRating = [];
-              for (int i = 0; i < 4; i++) {
-                starsRating.add(Icon(
-                  Icons.star,
-                  color: ThemeColors.coral400,
-                ));
-              }
+
               return Stack(
                 children: [
                   Image.network(
-                    accommodations[1].imageUrl,
+                    accommodations[0].imageUrl,
                     width: double.infinity,
                     height: MediaQuery.of(context).size.height * 0.3,
                     fit: BoxFit.cover,
@@ -98,11 +94,13 @@ class AccommodationDetailsScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  accommodations[1].title,
+                                  accommodations[0].title,
                                   style: textTheme.headline6,
                                 ),
-                                Row(children: starsRating),
-                                Text(accommodations[1].shortDescription!,
+                                StarsList(
+                                    categorization:
+                                        accommodations[0].categorization),
+                                Text(accommodations[0].shortDescription!,
                                     style: textTheme.bodyText2!
                                         .copyWith(color: ThemeColors.grey500)),
                                 Row(
@@ -113,7 +111,7 @@ class AccommodationDetailsScreen extends StatelessWidget {
                                     ),
                                     const SizedBox(width: 20),
                                     Text(
-                                        accommodations[1].freeCancelation!
+                                        accommodations[0].freeCancelation!
                                             ? 'Free cancellation available'
                                             : 'Free cancellation unavailable',
                                         style: textTheme.bodyText2!.copyWith(
@@ -121,34 +119,34 @@ class AccommodationDetailsScreen extends StatelessWidget {
                                             color: ThemeColors.teal800)),
                                   ],
                                 ),
-                                Text(accommodations[1].longDescription!,
+                                Text(accommodations[0].longDescription!,
                                     style: textTheme.bodyText1!
                                         .copyWith(color: ThemeColors.teal800)),
                                 Text('Property info:',
                                     style: textTheme.bodyText1!
                                         .copyWith(fontWeight: FontWeight.w600)),
                                 Text(
-                                  '${accommodations[1].capacity} guest${accommodations[1].capacity != 1 ? 's' : ''}',
+                                  '${accommodations[0].capacity} guest${accommodations[1].capacity != 1 ? 's' : ''}',
                                   style: textTheme.bodyText2!
                                       .copyWith(color: ThemeColors.teal800),
                                 ),
                                 Text(
-                                  accommodations[1].accommodationType!,
+                                  accommodations[0].accommodationType!,
                                   style: textTheme.bodyText2!
                                       .copyWith(color: ThemeColors.teal800),
                                 ),
                                 Text(
-                                  'EUR ${accommodations[1].price} per night',
+                                  'EUR ${accommodations[0].price} per night',
                                   style: textTheme.bodyText2!
                                       .copyWith(color: ThemeColors.teal800),
                                 ),
                                 Text(
-                                  accommodations[1].location,
+                                  accommodations[0].location,
                                   style: textTheme.bodyText2!
                                       .copyWith(color: ThemeColors.teal800),
                                 ),
                                 Text(
-                                  accommodations[1].postalCode!,
+                                  accommodations[0].postalCode!,
                                   style: textTheme.bodyText2!
                                       .copyWith(color: ThemeColors.teal800),
                                 ),
