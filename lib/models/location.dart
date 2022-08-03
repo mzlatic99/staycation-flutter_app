@@ -9,7 +9,7 @@ class Location with _$Location {
   const factory Location(
       {required String id,
       required String locationName,
-      required String postalCode,
+      String? postalCode,
       required String imageUrl,
       required int properties}) = _Location;
 

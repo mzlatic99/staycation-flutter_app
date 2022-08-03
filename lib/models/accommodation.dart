@@ -10,15 +10,15 @@ class Accommodation with _$Accommodation {
       {required String id,
       required String imageUrl,
       required String title,
-      required String shortDescription,
-      required String longDescription,
+      String? shortDescription,
+      String? longDescription,
       required String location,
-      required String postalCode,
+      String? postalCode,
       required int price,
       required int categorization,
-      required int capacity,
-      required String accommodationType,
-      required bool freeCancelation}) = _Accommodation;
+      int? capacity,
+      String? accommodationType,
+      bool? freeCancelation}) = _Accommodation;
 
   factory Accommodation.fromJson(Map<String, dynamic> json) =>
       _$AccommodationFromJson(json);

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import '../../../models/accommodation.dart';
+
 import '../../../http.dart';
-import '../../../shared/homes_guests_love_card.dart';
 import '../../../theme.dart';
+import '../../../models/accommodation.dart';
+
+import '../../../shared/homes_guests_love_card.dart';
+import 'title_and_button.dart';
 
 class HomesGuestsLove extends StatelessWidget {
   const HomesGuestsLove({
@@ -20,22 +23,9 @@ class HomesGuestsLove extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.fromLTRB(20, 40, 20, 0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Homes guests love',
-                style: textTheme.headline5,
-              ),
-              TextButton(
-                  onPressed: () {},
-                  child: Text('VIEW MORE',
-                      style: textTheme.button!.merge(
-                        TextStyle(
-                          color: ThemeColors.mint400,
-                        ),
-                      )))
-            ],
+          child: TitleAndButton(
+            title: 'Homes guests love',
+            function: () {},
           ),
         ),
         SizedBox(
@@ -53,6 +43,7 @@ class HomesGuestsLove extends StatelessWidget {
                 ));
               }
               List<Accommodation> accommodations = snapshot.data;
+
               for (var accommodation in accommodations) {
                 _homesGuestsLoveList.add(HomeGuestsLoveCard(
                     isHorizontalList: true,

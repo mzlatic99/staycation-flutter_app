@@ -17,7 +17,7 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: Routes.homeScreen,
       routes: {
-        Routes.homeScreen: (context) => AccommodationDetailsScreen(),
+        Routes.homeScreen: (context) => HomeScreen(),
       },
     );
   }

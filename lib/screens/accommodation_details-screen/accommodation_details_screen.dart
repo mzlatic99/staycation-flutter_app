@@ -102,7 +102,7 @@ class AccommodationDetailsScreen extends StatelessWidget {
                                   style: textTheme.headline6,
                                 ),
                                 Row(children: starsRating),
-                                Text(accommodations[1].shortDescription,
+                                Text(accommodations[1].shortDescription!,
                                     style: textTheme.bodyText2!
                                         .copyWith(color: ThemeColors.grey500)),
                                 Row(
@@ -113,7 +113,7 @@ class AccommodationDetailsScreen extends StatelessWidget {
                                     ),
                                     const SizedBox(width: 20),
                                     Text(
-                                        accommodations[1].freeCancelation
+                                        accommodations[1].freeCancelation!
                                             ? 'Free cancellation available'
                                             : 'Free cancellation unavailable',
                                         style: textTheme.bodyText2!.copyWith(
@@ -121,7 +121,7 @@ class AccommodationDetailsScreen extends StatelessWidget {
                                             color: ThemeColors.teal800)),
                                   ],
                                 ),
-                                Text(accommodations[1].longDescription,
+                                Text(accommodations[1].longDescription!,
                                     style: textTheme.bodyText1!
                                         .copyWith(color: ThemeColors.teal800)),
                                 Text('Property info:',
@@ -133,7 +133,7 @@ class AccommodationDetailsScreen extends StatelessWidget {
                                       .copyWith(color: ThemeColors.teal800),
                                 ),
                                 Text(
-                                  accommodations[1].accommodationType,
+                                  accommodations[1].accommodationType!,
                                   style: textTheme.bodyText2!
                                       .copyWith(color: ThemeColors.teal800),
                                 ),
@@ -148,7 +148,7 @@ class AccommodationDetailsScreen extends StatelessWidget {
                                       .copyWith(color: ThemeColors.teal800),
                                 ),
                                 Text(
-                                  accommodations[1].postalCode,
+                                  accommodations[1].postalCode!,
                                   style: textTheme.bodyText2!
                                       .copyWith(color: ThemeColors.teal800),
                                 ),

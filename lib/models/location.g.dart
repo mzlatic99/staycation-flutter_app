@@ -9,7 +9,7 @@ part of 'location.dart';
 _$_Location _$$_LocationFromJson(Map<String, dynamic> json) => _$_Location(
       id: json['id'] as String,
       locationName: json['locationName'] as String,
-      postalCode: json['postalCode'] as String,
+      postalCode: json['postalCode'] as String?,
       imageUrl: json['imageUrl'] as String,
       properties: json['properties'] as int,
     );

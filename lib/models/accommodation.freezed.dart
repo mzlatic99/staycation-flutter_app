@@ -23,15 +23,15 @@ mixin _$Accommodation {
   String get id => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
-  String get shortDescription => throw _privateConstructorUsedError;
-  String get longDescription => throw _privateConstructorUsedError;
+  String? get shortDescription => throw _privateConstructorUsedError;
+  String? get longDescription => throw _privateConstructorUsedError;
   String get location => throw _privateConstructorUsedError;
-  String get postalCode => throw _privateConstructorUsedError;
+  String? get postalCode => throw _privateConstructorUsedError;
   int get price => throw _privateConstructorUsedError;
   int get categorization => throw _privateConstructorUsedError;
-  int get capacity => throw _privateConstructorUsedError;
-  String get accommodationType => throw _privateConstructorUsedError;
-  bool get freeCancelation => throw _privateConstructorUsedError;
+  int? get capacity => throw _privateConstructorUsedError;
+  String? get accommodationType => throw _privateConstructorUsedError;
+  bool? get freeCancelation => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,15 +48,15 @@ abstract class $AccommodationCopyWith<$Res> {
       {String id,
       String imageUrl,
       String title,
-      String shortDescription,
-      String longDescription,
+      String? shortDescription,
+      String? longDescription,
       String location,
-      String postalCode,
+      String? postalCode,
       int price,
       int categorization,
-      int capacity,
-      String accommodationType,
-      bool freeCancelation});
+      int? capacity,
+      String? accommodationType,
+      bool? freeCancelation});
 }
 
 /// @nodoc
@@ -99,11 +99,11 @@ class _$AccommodationCopyWithImpl<$Res>
       shortDescription: shortDescription == freezed
           ? _value.shortDescription
           : shortDescription // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       longDescription: longDescription == freezed
           ? _value.longDescription
           : longDescription // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       location: location == freezed
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
@@ -111,7 +111,7 @@ class _$AccommodationCopyWithImpl<$Res>
       postalCode: postalCode == freezed
           ? _value.postalCode
           : postalCode // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       price: price == freezed
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
@@ -123,15 +123,15 @@ class _$AccommodationCopyWithImpl<$Res>
       capacity: capacity == freezed
           ? _value.capacity
           : capacity // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       accommodationType: accommodationType == freezed
           ? _value.accommodationType
           : accommodationType // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       freeCancelation: freeCancelation == freezed
           ? _value.freeCancelation
           : freeCancelation // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
     ));
   }
 }
@@ -147,15 +147,15 @@ abstract class _$$_AccommodationCopyWith<$Res>
       {String id,
       String imageUrl,
       String title,
-      String shortDescription,
-      String longDescription,
+      String? shortDescription,
+      String? longDescription,
       String location,
-      String postalCode,
+      String? postalCode,
       int price,
       int categorization,
-      int capacity,
-      String accommodationType,
-      bool freeCancelation});
+      int? capacity,
+      String? accommodationType,
+      bool? freeCancelation});
 }
 
 /// @nodoc
@@ -200,11 +200,11 @@ class __$$_AccommodationCopyWithImpl<$Res>
       shortDescription: shortDescription == freezed
           ? _value.shortDescription
           : shortDescription // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       longDescription: longDescription == freezed
           ? _value.longDescription
           : longDescription // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       location: location == freezed
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
@@ -212,7 +212,7 @@ class __$$_AccommodationCopyWithImpl<$Res>
       postalCode: postalCode == freezed
           ? _value.postalCode
           : postalCode // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       price: price == freezed
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
@@ -224,15 +224,15 @@ class __$$_AccommodationCopyWithImpl<$Res>
       capacity: capacity == freezed
           ? _value.capacity
           : capacity // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       accommodationType: accommodationType == freezed
           ? _value.accommodationType
           : accommodationType // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       freeCancelation: freeCancelation == freezed
           ? _value.freeCancelation
           : freeCancelation // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
     ));
   }
 }
@@ -245,15 +245,15 @@ class _$_Accommodation implements _Accommodation {
       {required this.id,
       required this.imageUrl,
       required this.title,
-      required this.shortDescription,
-      required this.longDescription,
+      this.shortDescription,
+      this.longDescription,
       required this.location,
-      required this.postalCode,
+      this.postalCode,
       required this.price,
       required this.categorization,
-      required this.capacity,
-      required this.accommodationType,
-      required this.freeCancelation});
+      this.capacity,
+      this.accommodationType,
+      this.freeCancelation});
 
   factory _$_Accommodation.fromJson(Map<String, dynamic> json) =>
       _$$_AccommodationFromJson(json);
@@ -265,23 +265,23 @@ class _$_Accommodation implements _Accommodation {
   @override
   final String title;
   @override
-  final String shortDescription;
+  final String? shortDescription;
   @override
-  final String longDescription;
+  final String? longDescription;
   @override
   final String location;
   @override
-  final String postalCode;
+  final String? postalCode;
   @override
   final int price;
   @override
   final int categorization;
   @override
-  final int capacity;
+  final int? capacity;
   @override
-  final String accommodationType;
+  final String? accommodationType;
   @override
-  final bool freeCancelation;
+  final bool? freeCancelation;
 
   @override
   String toString() {
@@ -348,15 +348,15 @@ abstract class _Accommodation implements Accommodation {
       {required final String id,
       required final String imageUrl,
       required final String title,
-      required final String shortDescription,
-      required final String longDescription,
+      final String? shortDescription,
+      final String? longDescription,
       required final String location,
-      required final String postalCode,
+      final String? postalCode,
       required final int price,
       required final int categorization,
-      required final int capacity,
-      required final String accommodationType,
-      required final bool freeCancelation}) = _$_Accommodation;
+      final int? capacity,
+      final String? accommodationType,
+      final bool? freeCancelation}) = _$_Accommodation;
 
   factory _Accommodation.fromJson(Map<String, dynamic> json) =
       _$_Accommodation.fromJson;
@@ -368,23 +368,23 @@ abstract class _Accommodation implements Accommodation {
   @override
   String get title;
   @override
-  String get shortDescription;
+  String? get shortDescription;
   @override
-  String get longDescription;
+  String? get longDescription;
   @override
   String get location;
   @override
-  String get postalCode;
+  String? get postalCode;
   @override
   int get price;
   @override
   int get categorization;
   @override
-  int get capacity;
+  int? get capacity;
   @override
-  String get accommodationType;
+  String? get accommodationType;
   @override
-  bool get freeCancelation;
+  bool? get freeCancelation;
   @override
   @JsonKey(ignore: true)
   _$$_AccommodationCopyWith<_$_Accommodation> get copyWith =>

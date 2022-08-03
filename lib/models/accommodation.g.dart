@@ -11,15 +11,15 @@ _$_Accommodation _$$_AccommodationFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       imageUrl: json['imageUrl'] as String,
       title: json['title'] as String,
-      shortDescription: json['shortDescription'] as String,
-      longDescription: json['longDescription'] as String,
+      shortDescription: json['shortDescription'] as String?,
+      longDescription: json['longDescription'] as String?,
       location: json['location'] as String,
-      postalCode: json['postalCode'] as String,
+      postalCode: json['postalCode'] as String?,
       price: json['price'] as int,
       categorization: json['categorization'] as int,
-      capacity: json['capacity'] as int,
-      accommodationType: json['accommodationType'] as String,
-      freeCancelation: json['freeCancelation'] as bool,
+      capacity: json['capacity'] as int?,
+      accommodationType: json['accommodationType'] as String?,
+      freeCancelation: json['freeCancelation'] as bool?,
     );
 
 Map<String, dynamic> _$$_AccommodationToJson(_$_Accommodation instance) =>

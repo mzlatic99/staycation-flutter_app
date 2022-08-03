@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import '../../../models/location.dart';
+
 import '../../../http.dart';
-import '../../../shared/popular_locations_card.dart';
 import '../../../theme.dart';
+import '../../../models/location.dart';
+
+import '../../../shared/popular_locations_card.dart';
+import 'title_and_button.dart';
 
 class PopularLocations extends StatelessWidget {
   const PopularLocations({
@@ -19,24 +22,9 @@ class PopularLocations extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Popular locations',
-                style: textTheme.headline5,
-              ),
-              TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    'VIEW MORE',
-                    style: textTheme.button!.merge(
-                      TextStyle(
-                        color: ThemeColors.mint400,
-                      ),
-                    ),
-                  ))
-            ],
+          child: TitleAndButton(
+            title: 'Popular locations',
+            function: () {},
           ),
         ),
         FutureBuilder(

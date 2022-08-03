@@ -22,7 +22,7 @@ Location _$LocationFromJson(Map<String, dynamic> json) {
 mixin _$Location {
   String get id => throw _privateConstructorUsedError;
   String get locationName => throw _privateConstructorUsedError;
-  String get postalCode => throw _privateConstructorUsedError;
+  String? get postalCode => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
   int get properties => throw _privateConstructorUsedError;
 
@@ -39,7 +39,7 @@ abstract class $LocationCopyWith<$Res> {
   $Res call(
       {String id,
       String locationName,
-      String postalCode,
+      String? postalCode,
       String imageUrl,
       int properties});
 }
@@ -72,7 +72,7 @@ class _$LocationCopyWithImpl<$Res> implements $LocationCopyWith<$Res> {
       postalCode: postalCode == freezed
           ? _value.postalCode
           : postalCode // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       imageUrl: imageUrl == freezed
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -94,7 +94,7 @@ abstract class _$$_LocationCopyWith<$Res> implements $LocationCopyWith<$Res> {
   $Res call(
       {String id,
       String locationName,
-      String postalCode,
+      String? postalCode,
       String imageUrl,
       int properties});
 }
@@ -129,7 +129,7 @@ class __$$_LocationCopyWithImpl<$Res> extends _$LocationCopyWithImpl<$Res>
       postalCode: postalCode == freezed
           ? _value.postalCode
           : postalCode // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       imageUrl: imageUrl == freezed
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -149,7 +149,7 @@ class _$_Location implements _Location {
   const _$_Location(
       {required this.id,
       required this.locationName,
-      required this.postalCode,
+      this.postalCode,
       required this.imageUrl,
       required this.properties});
 
@@ -161,7 +161,7 @@ class _$_Location implements _Location {
   @override
   final String locationName;
   @override
-  final String postalCode;
+  final String? postalCode;
   @override
   final String imageUrl;
   @override
@@ -214,7 +214,7 @@ abstract class _Location implements Location {
   const factory _Location(
       {required final String id,
       required final String locationName,
-      required final String postalCode,
+      final String? postalCode,
       required final String imageUrl,
       required final int properties}) = _$_Location;
 
@@ -225,7 +225,7 @@ abstract class _Location implements Location {
   @override
   String get locationName;
   @override
-  String get postalCode;
+  String? get postalCode;
   @override
   String get imageUrl;
   @override
