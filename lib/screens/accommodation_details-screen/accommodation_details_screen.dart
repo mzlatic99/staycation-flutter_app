@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../assets.dart';
-import '../../models/accommodation.dart';
-import '../../http.dart';
 import '../../theme.dart';
 
 import '../../shared/stars_list.dart';
@@ -19,7 +16,7 @@ class AccommodationDetailsScreen extends StatefulWidget {
 class _AccommodationDetailsScreenState
     extends State<AccommodationDetailsScreen> {
   var isSheetFullScreen = false;
-
+  //pass data from previous screen
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
