@@ -5,8 +5,8 @@ import '../theme.dart';
 
 class TopNavBar extends StatelessWidget with PreferredSizeWidget {
   final String title;
-  final List<SvgPicture>? actionIcons;
-  final SvgPicture? leading;
+  final List<GestureDetector>? actionIcons;
+  final GestureDetector? leading;
 
   TopNavBar({required this.title, this.actionIcons, this.leading});
 
@@ -16,10 +16,7 @@ class TopNavBar extends StatelessWidget with PreferredSizeWidget {
       newActionIcons.add(
         Padding(
           padding: const EdgeInsets.only(right: 20.0),
-          child: GestureDetector(
-            onTap: () {},
-            child: actionIcons![i],
-          ),
+          child: actionIcons![i],
         ),
       );
     }

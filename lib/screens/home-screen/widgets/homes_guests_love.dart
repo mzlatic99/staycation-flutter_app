@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 
 import '../../../http.dart';
 import '../../../theme.dart';
+import '../../../router.dart';
 import '../../../models/accommodation.dart';
 
 import '../../../shared/homes_guests_love_card.dart';
 import 'title_and_button.dart';
 
 class HomesGuestsLove extends StatelessWidget {
-  final List<HomeGuestsLoveCard> _accommodationList = [];
+  final List<HomesGuestsLoveCard> _accommodationList = [];
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,9 @@ class HomesGuestsLove extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(20, 40, 20, 0),
           child: TitleAndButton(
             title: 'Homes guests love',
-            function: () {},
+            function: () {
+              router.navigateTo(context, Routes.homesGuestsLoveScreen, null);
+            },
           ),
         ),
         SizedBox(
@@ -40,7 +43,7 @@ class HomesGuestsLove extends StatelessWidget {
 
               for (var accommodation in accommodations) {
                 _accommodationList.add(
-                  HomeGuestsLoveCard(
+                  HomesGuestsLoveCard(
                     isHorizontalList: true,
                     accommodation: Accommodation(
                       id: accommodation.id,
@@ -49,6 +52,12 @@ class HomesGuestsLove extends StatelessWidget {
                       location: accommodation.location,
                       price: accommodation.price,
                       categorization: accommodation.categorization,
+                      shortDescription: accommodation.shortDescription,
+                      longDescription: accommodation.longDescription,
+                      postalCode: accommodation.postalCode,
+                      capacity: accommodation.capacity,
+                      accommodationType: accommodation.accommodationType,
+                      freeCancelation: accommodation.freeCancelation,
                     ),
                   ),
                 );

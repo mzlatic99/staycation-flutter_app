@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'models/location.dart';
 import 'models/accommodation.dart';
+import 'models/reservation.dart';
 
 class HTTPInterceptor extends InterceptorsWrapper {
   @override
@@ -55,6 +56,24 @@ class HTTP {
   Future<List<Accommodation>> getAllHomes() async {
     Response response = await client.get(
       'homes-all',
+    );
+    return response.data
+        .map<Accommodation>((json) => Accommodation.fromJson(json))
+        .toList();
+  }
+
+  Future<List<Reservation>> getReservations() async {
+    Response response = await client.get(
+      'homes-all/1/reservation',
+    );
+    return response.data
+        .map<Reservation>((json) => Reservation.fromJson(json))
+        .toList();
+  }
+
+  Future<List<Accommodation>> getMyPlaces() async {
+    Response response = await client.get(
+      'myplaces',
     );
     return response.data
         .map<Accommodation>((json) => Accommodation.fromJson(json))

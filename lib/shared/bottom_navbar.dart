@@ -4,12 +4,37 @@ import 'package:flutter_svg/svg.dart';
 
 import '../theme.dart';
 import '../assets.dart';
+import '../router.dart';
 
 class BottomNavBar extends StatelessWidget {
-  //bool isSelected = true;
+  final int index;
+  BottomNavBar({required this.index});
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      onTap: (int curr) {
+        if (index == curr)
+          ;
+        else {
+          switch (curr) {
+            case 0:
+              router.navigateTo(context, Routes.homeScreen, null);
+              break;
+            case 1:
+              router.navigateTo(context, Routes.myBookingsScreen, null);
+              break;
+            case 2:
+              router.navigateTo(context, Routes.myPlacesScreen, null);
+              break;
+            default:
+              break;
+          }
+        }
+        // if (index == 0) router.navigateTo(context, Routes.homeScreen);
+        // if (index == 1) router.navigateTo(context, Routes.myBookingsScreen);
+        // if (index == 2) router.navigateTo(context, Routes.myPlacesScreen);
+      },
+      currentIndex: index,
       items: [
         BottomNavigationBarItem(
             icon: SvgPicture.asset(
