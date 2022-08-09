@@ -76,6 +76,27 @@ class HomesGuestsLoveScreen extends StatelessWidget {
                       ),
                     );
                   }
+                  if (locationFilter == 'all') {
+                    _homesGuestsLoveList.add(
+                      HomesGuestsLoveCard(
+                        isHorizontalList: false,
+                        accommodation: Accommodation(
+                          id: accommodation.id,
+                          imageUrl: accommodation.imageUrl,
+                          title: accommodation.title,
+                          location: accommodation.location,
+                          price: accommodation.price,
+                          categorization: accommodation.categorization,
+                          shortDescription: accommodation.shortDescription,
+                          longDescription: accommodation.longDescription,
+                          postalCode: accommodation.postalCode,
+                          capacity: accommodation.capacity,
+                          accommodationType: accommodation.accommodationType,
+                          freeCancelation: accommodation.freeCancelation,
+                        ),
+                      ),
+                    );
+                  }
                 }
                 return Expanded(
                   child: ListView(

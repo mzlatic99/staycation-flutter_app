@@ -21,7 +21,7 @@ class HomesGuestsLove extends StatelessWidget {
           child: TitleAndButton(
             title: 'Homes guests love',
             function: () {
-              router.navigateTo(context, Routes.homesGuestsLoveScreen, null);
+              router.navigateTo(context, Routes.homesGuestsLoveScreen, 'all');
             },
           ),
         ),
