@@ -8,7 +8,11 @@ class Accommodations with ChangeNotifier {
     return [..._accommodations];
   }
 
-  void addAccommodation() {
-    notifyListeners();
+  void addAccommodation(accommodation) {
+    _accommodations.add(accommodation);
+  }
+
+  void clearAccommodation() {
+    _accommodations.clear();
   }
 }

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 import '../../assets.dart';
 import '../../theme.dart';
-import '../../http.dart';
 import '../../router.dart';
-import '../../models/accommodation.dart';
-import '../../models/location.dart';
+import '../../providers/accommodations_provider.dart';
 
 import '../../shared/top_navbar.dart';
 import '../../shared/homes_guests_love_card.dart';
@@ -15,7 +14,28 @@ class HomesGuestsLoveScreen extends StatelessWidget {
   final List<HomesGuestsLoveCard> _homesGuestsLoveList = [];
   @override
   Widget build(BuildContext context) {
+    final accommodationData =
+        Provider.of<Accommodations>(context, listen: false);
     final locationFilter = ModalRoute.of(context)!.settings.arguments as String;
+    for (var i = 0; i < accommodationData.accommodations.length; i++) {
+      if (accommodationData.accommodations[i].location == locationFilter) {
+        _homesGuestsLoveList.add(
+          HomesGuestsLoveCard(
+            isHorizontalList: false,
+            accommodation: accommodationData.accommodations[i],
+          ),
+        );
+      } else if (locationFilter == 'all') {
+        _homesGuestsLoveList.add(
+          HomesGuestsLoveCard(
+            isHorizontalList: false,
+            accommodation: accommodationData.accommodations[i],
+          ),
+        );
+      } else {
+        continue;
+      }
+    }
     return Scaffold(
       appBar: TopNavBar(
         title: 'Homes guests love',
@@ -41,71 +61,11 @@ class HomesGuestsLoveScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            FutureBuilder(
-              future: http.getAllHomes(),
-              builder: (BuildContext context, AsyncSnapshot snapshot) {
-                if (snapshot.hasError) {
-                  return const Center(child: Text('error'));
-                }
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(
-                      child: CircularProgressIndicator(
-                    color: ThemeColors.mint500,
-                  ));
-                }
-                List<Accommodation> accommodations = snapshot.data;
-                for (var accommodation in accommodations) {
-                  if (accommodation.location == locationFilter) {
-                    _homesGuestsLoveList.add(
-                      HomesGuestsLoveCard(
-                        isHorizontalList: false,
-                        accommodation: Accommodation(
-                          id: accommodation.id,
-                          imageUrl: accommodation.imageUrl,
-                          title: accommodation.title,
-                          location: accommodation.location,
-                          price: accommodation.price,
-                          categorization: accommodation.categorization,
-                          shortDescription: accommodation.shortDescription,
-                          longDescription: accommodation.longDescription,
-                          postalCode: accommodation.postalCode,
-                          capacity: accommodation.capacity,
-                          accommodationType: accommodation.accommodationType,
-                          freeCancelation: accommodation.freeCancelation,
-                        ),
-                      ),
-                    );
-                  }
-                  if (locationFilter == 'all') {
-                    _homesGuestsLoveList.add(
-                      HomesGuestsLoveCard(
-                        isHorizontalList: false,
-                        accommodation: Accommodation(
-                          id: accommodation.id,
-                          imageUrl: accommodation.imageUrl,
-                          title: accommodation.title,
-                          location: accommodation.location,
-                          price: accommodation.price,
-                          categorization: accommodation.categorization,
-                          shortDescription: accommodation.shortDescription,
-                          longDescription: accommodation.longDescription,
-                          postalCode: accommodation.postalCode,
-                          capacity: accommodation.capacity,
-                          accommodationType: accommodation.accommodationType,
-                          freeCancelation: accommodation.freeCancelation,
-                        ),
-                      ),
-                    );
-                  }
-                }
-                return Expanded(
-                  child: ListView(
-                    padding: const EdgeInsets.only(top: 24),
-                    children: _homesGuestsLoveList,
-                  ),
-                );
-              },
-            ),
+            Expanded(
+                child: ListView(
+              padding: const EdgeInsets.only(top: 24),
+              children: _homesGuestsLoveList,
+            ))
           ],
         ),
       ),

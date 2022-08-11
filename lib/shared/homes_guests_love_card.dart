@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../models/accommodation.dart';
 import '../theme.dart';
@@ -9,9 +10,13 @@ import 'stars_list.dart';
 class HomesGuestsLoveCard extends StatelessWidget {
   final Accommodation accommodation;
   final bool isHorizontalList;
+  final DateTime? checkIn;
+  final DateTime? checkOut;
   HomesGuestsLoveCard({
     required this.accommodation,
     required this.isHorizontalList,
+    this.checkIn,
+    this.checkOut,
   });
 
   @override
@@ -97,12 +102,19 @@ class HomesGuestsLoveCard extends StatelessWidget {
                             style: textTheme.bodyText2!
                                 .merge(TextStyle(color: ThemeColors.grey300)),
                           ),
-                          Text(
-                            'EUR ${accommodation.price}',
-                            style: textTheme.bodyText1!.merge(TextStyle(
-                                color: ThemeColors.teal800,
-                                fontWeight: FontWeight.w400)),
-                          ),
+                          checkIn == null && checkOut == null
+                              ? Text(
+                                  'EUR ${accommodation.price}',
+                                  style: textTheme.bodyText1!.merge(TextStyle(
+                                      color: ThemeColors.teal800,
+                                      fontWeight: FontWeight.w400)),
+                                )
+                              : Text(
+                                  '${DateFormat('dd MMM').format(checkIn!)} - ${DateFormat('dd MMM yyyy').format(checkOut!)}',
+                                  style: textTheme.bodyText2!.merge(TextStyle(
+                                      color: ThemeColors.teal800,
+                                      fontWeight: FontWeight.w600)),
+                                ),
                           StarsList(
                               categorization: accommodation.categorization),
                         ],
