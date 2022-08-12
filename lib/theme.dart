@@ -86,12 +86,23 @@ final TextTheme textTheme = TextTheme(
       letterSpacing: 0.15,
     ),
     labelMedium: GoogleFonts.roboto(
-        fontSize: 16,
-        fontWeight: FontWeight.w400,
-        height: 1.24,
-        letterSpacing: 0.14));
+      fontSize: 16,
+      fontWeight: FontWeight.w400,
+      height: 1.24,
+      letterSpacing: 0.14,
+    ));
 
 ThemeData theme = ThemeData(
+    inputDecorationTheme: InputDecorationTheme(
+      labelStyle: textTheme.labelMedium!.copyWith(color: ThemeColors.grey500),
+      floatingLabelStyle: TextStyle(color: ThemeColors.coral500),
+      focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: ThemeColors.coral500)),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(4),
+      ),
+      prefixIconColor: ThemeColors.coral500,
+    ),
     scaffoldBackgroundColor: Colors.white,
     appBarTheme: AppBarTheme(
         color: Colors.white,

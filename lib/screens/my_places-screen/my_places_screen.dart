@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../assets.dart';
 import '../../theme.dart';
 import '../../http.dart';
+import '../../router.dart';
 import '../../models/accommodation.dart';
 
 import '../../shared/top_navbar.dart';
@@ -22,7 +23,9 @@ class MyPlacesScreen extends StatelessWidget {
           Assets.icons.add,
           color: ThemeColors.white,
         ),
-        onPressed: () {},
+        onPressed: () {
+          router.navigateTo(context, Routes.addNewPlaceScreen, null);
+        },
       ),
       appBar: TopNavBar(
         title: 'My Places',
