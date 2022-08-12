@@ -9,10 +9,10 @@ import '../../models/accommodation.dart';
 
 import '../../shared/top_navbar.dart';
 import '../../shared/bottom_navbar.dart';
-import '../../shared/homes_guests_love_card.dart';
+import './widgets/my_place_card.dart';
 
 class MyPlacesScreen extends StatelessWidget {
-  final List<HomesGuestsLoveCard> _myPlacesList = [];
+  final List<MyPlaceCard> _myPlacesList = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,22 +52,22 @@ class MyPlacesScreen extends StatelessWidget {
                 List<Accommodation> accommodations = snapshot.data;
                 for (var accommodation in accommodations) {
                   _myPlacesList.add(
-                    HomesGuestsLoveCard(
-                        accommodation: Accommodation(
-                          id: accommodation.id,
-                          imageUrl: accommodation.imageUrl,
-                          title: accommodation.title,
-                          location: accommodation.location,
-                          price: accommodation.price,
-                          categorization: accommodation.categorization,
-                          shortDescription: accommodation.shortDescription,
-                          longDescription: accommodation.longDescription,
-                          postalCode: accommodation.postalCode,
-                          capacity: accommodation.capacity,
-                          accommodationType: accommodation.accommodationType,
-                          freeCancelation: accommodation.freeCancelation,
-                        ),
-                        isHorizontalList: false),
+                    MyPlaceCard(
+                      accommodation: Accommodation(
+                        id: accommodation.id,
+                        imageUrl: accommodation.imageUrl,
+                        title: accommodation.title,
+                        location: accommodation.location,
+                        price: accommodation.price,
+                        categorization: accommodation.categorization,
+                        shortDescription: accommodation.shortDescription,
+                        longDescription: accommodation.longDescription,
+                        postalCode: accommodation.postalCode,
+                        capacity: accommodation.capacity,
+                        accommodationType: accommodation.accommodationType,
+                        freeCancelation: accommodation.freeCancelation,
+                      ),
+                    ),
                   );
                 }
                 return Expanded(
