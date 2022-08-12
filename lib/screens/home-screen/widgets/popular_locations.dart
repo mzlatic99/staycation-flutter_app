@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../http.dart';
 import '../../../theme.dart';
+import '../../../router.dart';
 import '../../../models/location.dart';
 
 import '../../../shared/popular_locations_card.dart';
@@ -18,7 +19,9 @@ class PopularLocations extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           child: TitleAndButton(
             title: 'Popular locations',
-            function: () {},
+            function: () {
+              router.navigateTo(context, Routes.popularLocationsScreen, null);
+            },
           ),
         ),
         FutureBuilder(

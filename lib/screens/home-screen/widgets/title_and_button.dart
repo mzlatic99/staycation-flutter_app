@@ -13,7 +13,7 @@ class TitleAndButton extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          'Homes guests love',
+          title,
           style: textTheme.headline5,
         ),
         TextButton(
