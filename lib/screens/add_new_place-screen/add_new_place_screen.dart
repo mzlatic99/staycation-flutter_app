@@ -54,8 +54,9 @@ class _AddNewPlaceScreenState extends State<AddNewPlaceScreen> {
     final isValid = _formKey.currentState!.validate();
     if (isValid) {
       _formKey.currentState!.save();
-      http.addNewPlace(accommodation);
-      router.goBack(context);
+      print(accommodation);
+      // http.addNewPlace(accommodation);
+      // router.goBack(context);
     }
   }
 
@@ -63,8 +64,6 @@ class _AddNewPlaceScreenState extends State<AddNewPlaceScreen> {
   Widget build(BuildContext context) {
     final accommodationData =
         Provider.of<Accommodations>(context, listen: false);
-    accommodation['id'] =
-        (int.parse(accommodationData.accommodations.last.id) + 1).toString();
     return Scaffold(
       appBar: TopNavBar(
         title: 'Add new place',
@@ -105,7 +104,13 @@ class _AddNewPlaceScreenState extends State<AddNewPlaceScreen> {
                   decoration: const InputDecoration(
                     labelText: 'Listing name',
                   ),
-                  onSaved: (v) => accommodation['title'] = v,
+                  onSaved: (v) {
+                    accommodation['title'] = v;
+                    accommodation['id'] =
+                        (int.parse(accommodationData.accommodations.last.id) +
+                                1)
+                            .toString();
+                  },
                   textInputAction: TextInputAction.next,
                   validator: (v) {
                     if (v!.isEmpty) {

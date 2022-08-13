@@ -80,14 +80,12 @@ class HTTP {
         .toList();
   }
 
-  Future<void> addNewPlace(Map<String, dynamic> parameters) async {
+  Future<Response> addNewPlace(Map<String, dynamic> parameters) async {
     Response response = await client.post(
       'myplaces',
       queryParameters: parameters,
     );
-    return response.data
-        .map<Accommodation>((json) => Accommodation.fromJson(json))
-        .toList();
+    return response;
   }
 
   Future<List<Accommodation>> editPlace(int id) async {
@@ -99,13 +97,11 @@ class HTTP {
         .toList();
   }
 
-  Future<List<Accommodation>> deletePlace(int id) async {
+  Future<Response> deletePlace(int id) async {
     Response response = await client.delete(
       'myplaces/$id',
     );
-    return response.data
-        .map<Accommodation>((json) => Accommodation.fromJson(json))
-        .toList();
+    return response;
   }
 }
 
