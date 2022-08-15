@@ -93,6 +93,9 @@ final TextTheme textTheme = TextTheme(
     ));
 
 ThemeData theme = ThemeData(
+    textTheme: TextTheme(
+      subtitle1: TextStyle(color: ThemeColors.teal800),
+    ),
     inputDecorationTheme: InputDecorationTheme(
       labelStyle: textTheme.labelMedium!.copyWith(color: ThemeColors.grey500),
       floatingLabelStyle: TextStyle(color: ThemeColors.coral500),

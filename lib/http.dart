@@ -80,21 +80,18 @@ class HTTP {
         .toList();
   }
 
-  Future<Response> addNewPlace(Map<String, dynamic> parameters) async {
-    Response response = await client.post(
+  Future<Response> addNewPlace(Map<String, dynamic> map) {
+    return client.post(
       'myplaces',
-      queryParameters: parameters,
+      data: map,
     );
-    return response;
   }
 
-  Future<List<Accommodation>> editPlace(int id) async {
-    Response response = await client.put(
+  Future<Response> editPlace(int id, Map<String, dynamic> map) {
+    return client.put(
       'myplaces/$id',
+      data: map,
     );
-    return response.data
-        .map<Accommodation>((json) => Accommodation.fromJson(json))
-        .toList();
   }
 
   Future<Response> deletePlace(int id) async {

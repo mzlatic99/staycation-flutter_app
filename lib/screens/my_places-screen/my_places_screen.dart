@@ -1,19 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 import '../../assets.dart';
 import '../../theme.dart';
 import '../../http.dart';
 import '../../router.dart';
 import '../../models/accommodation.dart';
+import '../../providers/accommodations_provider.dart';
 
 import '../../shared/top_navbar.dart';
 import '../../shared/bottom_navbar.dart';
 import './widgets/my_place_card.dart';
 
-class MyPlacesScreen extends StatelessWidget {
+class MyPlacesScreen extends StatefulWidget {
+  @override
+  State<MyPlacesScreen> createState() => _MyPlacesScreenState();
+}
+
+class _MyPlacesScreenState extends State<MyPlacesScreen> {
   final List<MyPlaceCard> _myPlacesList = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,23 +61,30 @@ class MyPlacesScreen extends StatelessWidget {
                   ));
                 }
                 List<Accommodation> accommodations = snapshot.data;
+                for (var i = 0; i < accommodations.length; i++) {
+                  _myPlacesList
+                      .add(MyPlaceCard(accommodation: accommodations[i]));
+                }
+
+                final accommodationData =
+                    Provider.of<Accommodations>(context, listen: false);
+
+                accommodationData.clearMyAccommodation();
                 for (var accommodation in accommodations) {
-                  _myPlacesList.add(
-                    MyPlaceCard(
-                      accommodation: Accommodation(
-                        id: accommodation.id,
-                        imageUrl: accommodation.imageUrl,
-                        title: accommodation.title,
-                        location: accommodation.location,
-                        price: accommodation.price,
-                        categorization: accommodation.categorization,
-                        shortDescription: accommodation.shortDescription,
-                        longDescription: accommodation.longDescription,
-                        postalCode: accommodation.postalCode,
-                        capacity: accommodation.capacity,
-                        accommodationType: accommodation.accommodationType,
-                        freeCancelation: accommodation.freeCancelation,
-                      ),
+                  accommodationData.addMyAccommodation(
+                    Accommodation(
+                      id: accommodation.id,
+                      imageUrl: accommodation.imageUrl,
+                      title: accommodation.title,
+                      location: accommodation.location,
+                      price: accommodation.price,
+                      categorization: accommodation.categorization,
+                      shortDescription: accommodation.shortDescription,
+                      longDescription: accommodation.longDescription,
+                      postalCode: accommodation.postalCode,
+                      capacity: accommodation.capacity,
+                      accommodationType: accommodation.accommodationType,
+                      freeCancelation: accommodation.freeCancelation,
                     ),
                   );
                 }

@@ -20,18 +20,8 @@ class AddNewPlaceScreen extends StatefulWidget {
 
 class _AddNewPlaceScreenState extends State<AddNewPlaceScreen> {
   final _formKey = GlobalKey<FormState>();
+  final _switchKey = GlobalKey<FormFieldState>();
   String _categoryValue = 'Accommodation type';
-  // String? _id;
-  // String? _imageUrl;
-  // String? _title;
-  // String? _location;
-  // int? _price;
-  // int? _categorization;
-  // String? _shortDescription;
-  // String? _longDescription;
-  // String? _postalCode;
-  // int? _capacity;
-  // String? _accommodationType;
   bool _freeCancelation = false;
   Map<String, dynamic> accommodation = {
     'id': null,
@@ -50,13 +40,14 @@ class _AddNewPlaceScreenState extends State<AddNewPlaceScreen> {
 
   Accommodation? _editedAccommodation;
 
-  void _saveForm() {
+  void _saveForm(bool edit) {
     final isValid = _formKey.currentState!.validate();
     if (isValid) {
       _formKey.currentState!.save();
-      print(accommodation);
-      // http.addNewPlace(accommodation);
-      // router.goBack(context);
+      edit
+          ? http.editPlace(int.parse(accommodation['id']), accommodation)
+          : http.addNewPlace(accommodation);
+      Navigator.of(context).pop();
     }
   }
 
@@ -64,6 +55,12 @@ class _AddNewPlaceScreenState extends State<AddNewPlaceScreen> {
   Widget build(BuildContext context) {
     final accommodationData =
         Provider.of<Accommodations>(context, listen: false);
+    final accommodationReceiver = ModalRoute.of(context)!.settings.arguments;
+    if (accommodationReceiver != null) {
+      _editedAccommodation = accommodationReceiver as Accommodation;
+      _freeCancelation = _editedAccommodation!.freeCancelation!;
+    }
+
     return Scaffold(
       appBar: TopNavBar(
         title: 'Add new place',
@@ -79,7 +76,9 @@ class _AddNewPlaceScreenState extends State<AddNewPlaceScreen> {
         actionIcons: [
           GestureDetector(
             onTap: () {
-              _saveForm();
+              accommodationReceiver == null
+                  ? _saveForm(false)
+                  : _saveForm(true);
             },
             child: Center(
               child: Text(
@@ -101,15 +100,20 @@ class _AddNewPlaceScreenState extends State<AddNewPlaceScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 TextFormField(
+                  initialValue: accommodationReceiver == null
+                      ? null
+                      : _editedAccommodation!.title,
                   decoration: const InputDecoration(
                     labelText: 'Listing name',
                   ),
                   onSaved: (v) {
                     accommodation['title'] = v;
-                    accommodation['id'] =
-                        (int.parse(accommodationData.accommodations.last.id) +
+                    accommodationReceiver == null
+                        ? accommodation['id'] = (int.parse(
+                                    accommodationData.accommodations.last.id) +
                                 1)
-                            .toString();
+                            .toString()
+                        : accommodation['id'] = _editedAccommodation!.id;
                   },
                   textInputAction: TextInputAction.next,
                   validator: (v) {
@@ -120,6 +124,9 @@ class _AddNewPlaceScreenState extends State<AddNewPlaceScreen> {
                   },
                 ),
                 TextFormField(
+                  initialValue: accommodationReceiver == null
+                      ? null
+                      : _editedAccommodation!.shortDescription,
                   decoration:
                       const InputDecoration(labelText: 'Short description'),
                   onSaved: (v) => accommodation['shortDescription'] = v,
@@ -131,6 +138,9 @@ class _AddNewPlaceScreenState extends State<AddNewPlaceScreen> {
                   },
                 ),
                 TextFormField(
+                  initialValue: accommodationReceiver == null
+                      ? null
+                      : _editedAccommodation!.longDescription,
                   decoration: const InputDecoration(
                       labelText: 'Long description', alignLabelWithHint: true),
                   onSaved: (v) => accommodation['longDescription'] = v,
@@ -144,11 +154,14 @@ class _AddNewPlaceScreenState extends State<AddNewPlaceScreen> {
                   },
                 ),
                 TextFormField(
+                  initialValue: accommodationReceiver == null
+                      ? null
+                      : _editedAccommodation!.categorization.toString(),
                   decoration: const InputDecoration(
                       labelText: 'Categorization (Number of stars)'),
                   keyboardType: TextInputType.number,
-                  onChanged: (v) =>
-                      accommodation['categorization'] = int.parse(v),
+                  onSaved: (v) =>
+                      accommodation['categorization'] = int.parse(v as String),
                   textInputAction: TextInputAction.next,
                   validator: (v) {
                     if (v!.isEmpty) {
@@ -177,7 +190,9 @@ class _AddNewPlaceScreenState extends State<AddNewPlaceScreen> {
                       child: Text(value),
                     );
                   }).toList(),
-                  value: _categoryValue,
+                  value: accommodationReceiver == null
+                      ? _categoryValue
+                      : _editedAccommodation!.accommodationType,
                   onChanged: (String? newValue) {
                     setState(() {
                       _categoryValue = newValue!;
@@ -192,6 +207,9 @@ class _AddNewPlaceScreenState extends State<AddNewPlaceScreen> {
                   },
                 ),
                 TextFormField(
+                  initialValue: accommodationReceiver == null
+                      ? null
+                      : _editedAccommodation!.capacity.toString(),
                   decoration: const InputDecoration(labelText: 'Capacity'),
                   keyboardType: TextInputType.number,
                   textInputAction: TextInputAction.next,
@@ -209,6 +227,9 @@ class _AddNewPlaceScreenState extends State<AddNewPlaceScreen> {
                   },
                 ),
                 TextFormField(
+                  initialValue: accommodationReceiver == null
+                      ? null
+                      : _editedAccommodation!.price.toString(),
                   decoration: const InputDecoration(labelText: 'Price'),
                   textInputAction: TextInputAction.next,
                   onSaved: (v) =>
@@ -229,6 +250,9 @@ class _AddNewPlaceScreenState extends State<AddNewPlaceScreen> {
                   children: [
                     Expanded(
                       child: TextFormField(
+                        initialValue: accommodationReceiver == null
+                            ? null
+                            : _editedAccommodation!.location,
                         decoration:
                             const InputDecoration(labelText: 'Location'),
                         textInputAction: TextInputAction.next,
@@ -246,6 +270,9 @@ class _AddNewPlaceScreenState extends State<AddNewPlaceScreen> {
                     ),
                     Expanded(
                       child: TextFormField(
+                        initialValue: accommodationReceiver == null
+                            ? null
+                            : _editedAccommodation!.postalCode,
                         decoration:
                             const InputDecoration(labelText: 'Postal code'),
                         keyboardType: TextInputType.number,
@@ -262,6 +289,9 @@ class _AddNewPlaceScreenState extends State<AddNewPlaceScreen> {
                   ],
                 ),
                 TextFormField(
+                  initialValue: accommodationReceiver == null
+                      ? null
+                      : _editedAccommodation!.imageUrl,
                   decoration:
                       const InputDecoration(labelText: 'Listing image URL'),
                   keyboardType: TextInputType.url,
@@ -277,30 +307,33 @@ class _AddNewPlaceScreenState extends State<AddNewPlaceScreen> {
                     return null;
                   },
                 ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Free cancellation available',
-                      style: textTheme.bodyText1!
-                          .copyWith(color: ThemeColors.teal800),
-                    ),
-                    Switch(
-                      value: _freeCancelation,
-                      onChanged: (value) {
-                        accommodation['freeCancelation'] = value;
-                        setState(() {
-                          _freeCancelation = value;
-                        });
+                FormField(
+                  key: _switchKey,
+                  initialValue: _freeCancelation,
+                  validator: (v) {
+                    return null;
+                  },
+                  onSaved: (v) => accommodation['freeCancelation'] =
+                      _switchKey.currentState!.value,
+                  builder: (FormFieldState<bool> field) {
+                    return SwitchListTile(
+                      visualDensity: VisualDensity.compact,
+                      title: Text(
+                        "Free cancelation available",
+                        style: textTheme.bodyText1!
+                            .copyWith(color: ThemeColors.teal800),
+                      ),
+                      value: field.value!,
+                      onChanged: (v) {
+                        field.didChange(v);
                       },
                       activeColor: ThemeColors.mint500,
                       activeTrackColor: ThemeColors.mint200,
                       inactiveThumbColor: ThemeColors.white,
                       inactiveTrackColor: ThemeColors.grey200,
-                    ),
-                  ],
-                )
+                    );
+                  },
+                ),
               ],
             ),
           ),
