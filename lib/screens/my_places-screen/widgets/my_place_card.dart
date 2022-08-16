@@ -34,15 +34,34 @@ class MyPlaceCard extends StatelessWidget {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: const Text("Delete Confirmation"),
-              content: const Text("Are you sure you want to delete this item?"),
+              title: Text(
+                'Delete listing?',
+                style: textTheme.headline5,
+              ),
+              content: Text(
+                'Are you sure you want to delete this listing?'
+                '\nThis action cannot be reversed.',
+                style: textTheme.bodyText2!.copyWith(
+                    color: ThemeColors.teal800,
+                    height: 1.2,
+                    letterSpacing: 0.25),
+              ),
               actions: <Widget>[
                 TextButton(
-                    onPressed: () => Navigator.of(context).pop(true),
-                    child: const Text("Delete")),
-                TextButton(
                   onPressed: () => Navigator.of(context).pop(false),
-                  child: const Text("Cancel"),
+                  child: Text(
+                    'CANCEL',
+                    style:
+                        textTheme.button!.copyWith(color: ThemeColors.mint500),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () => Navigator.of(context).pop(true),
+                  child: Text(
+                    'DELETE',
+                    style:
+                        textTheme.button!.copyWith(color: ThemeColors.mint500),
+                  ),
                 ),
               ],
             );

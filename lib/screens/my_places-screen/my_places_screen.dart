@@ -26,15 +26,14 @@ class _MyPlacesScreenState extends State<MyPlacesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        backgroundColor: ThemeColors.mint400,
-        child: SvgPicture.asset(
-          Assets.icons.add,
-          color: ThemeColors.white,
-        ),
-        onPressed: () {
-          router.navigateTo(context, Routes.addNewPlaceScreen, null);
-        },
-      ),
+          backgroundColor: ThemeColors.mint400,
+          child: SvgPicture.asset(
+            Assets.icons.add,
+            color: ThemeColors.white,
+          ),
+          onPressed: () {
+            router.navigateTo(context, Routes.addNewPlaceScreen, null);
+          }),
       appBar: TopNavBar(
         title: 'My Places',
         actionIcons: [
