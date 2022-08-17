@@ -40,14 +40,14 @@ class _AddNewPlaceScreenState extends State<AddNewPlaceScreen> {
 
   Accommodation? _editedAccommodation;
 
-  void _saveForm(bool edit) {
+  void _saveForm(bool edit) async {
     final isValid = _formKey.currentState!.validate();
     if (isValid) {
       _formKey.currentState!.save();
       edit
-          ? http.editPlace(int.parse(accommodation['id']), accommodation)
-          : http.addNewPlace(accommodation);
-      Navigator.of(context).pop();
+          ? await http.editPlace(int.parse(accommodation['id']), accommodation)
+          : await http.addNewPlace(accommodation);
+      await router.navigateTo(context, Routes.myPlacesScreen, null);
     }
   }
 

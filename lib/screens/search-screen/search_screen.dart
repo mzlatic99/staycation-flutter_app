@@ -38,7 +38,6 @@ class _SearchScreenState extends State<SearchScreen> {
     ).then((selectedDate) {
       if (selectedDate != null) {
         controller.text = (DateFormat.yMMMd().format(selectedDate)).toString();
-        print(controller.value);
       }
     });
   }
