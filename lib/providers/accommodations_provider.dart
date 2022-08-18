@@ -8,11 +8,25 @@ class Accommodations with ChangeNotifier {
     return [..._accommodations];
   }
 
+  List<Accommodation> _myAccommodations = [];
+
+  List<Accommodation> get myAccommodations {
+    return [..._myAccommodations];
+  }
+
   void addAccommodation(accommodation) {
     _accommodations.add(accommodation);
   }
 
   void clearAccommodation() {
     _accommodations.clear();
+  }
+
+  void addMyAccommodation(accommodation) {
+    _myAccommodations.add(accommodation);
+  }
+
+  void clearMyAccommodation() {
+    _myAccommodations.clear();
   }
 }

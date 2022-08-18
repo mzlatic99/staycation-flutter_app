@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../theme.dart';
 import '../../assets.dart';
+import '../../router.dart';
 
 import '../../shared/top_navbar.dart';
 import '../../shared/bottom_navbar.dart';
@@ -18,7 +19,7 @@ class HomeScreen extends StatelessWidget {
         title: 'Staycation',
         actionIcons: [
           GestureDetector(
-            onTap: () {},
+            onTap: () => router.navigateTo(context, Routes.searchScreen, null),
             child: SvgPicture.asset(
               Assets.icons.search,
               width: 18,

@@ -79,6 +79,27 @@ class HTTP {
         .map<Accommodation>((json) => Accommodation.fromJson(json))
         .toList();
   }
+
+  Future<Response> addNewPlace(Map<String, dynamic> map) {
+    return client.post(
+      'myplaces',
+      data: map,
+    );
+  }
+
+  Future<Response> editPlace(int id, Map<String, dynamic> map) {
+    return client.put(
+      'myplaces/$id',
+      data: map,
+    );
+  }
+
+  Future<Response> deletePlace(int id) async {
+    Response response = await client.delete(
+      'myplaces/$id',
+    );
+    return response;
+  }
 }
 
 final http = HTTP();

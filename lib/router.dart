@@ -7,6 +7,8 @@ class Routes {
   static String myBookingsScreen = '/myBookingsScreen';
   static String popularLocationsScreen = '/popularLocationsScreen';
   static String myPlacesScreen = '/myPlacesScreen';
+  static String addNewPlaceScreen = '/addNewPlaceScreen';
+  static String searchScreen = '/searchScreen';
 }
 
 class Router {
