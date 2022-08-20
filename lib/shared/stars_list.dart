@@ -13,6 +13,7 @@ class StarsList extends StatelessWidget {
     for (int i = 0; i < categorization; i++) {
       _starsRating.add(Icon(
         Icons.star,
+        size: 16.67,
         color: ThemeColors.coral400,
       ));
     }

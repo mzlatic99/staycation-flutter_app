@@ -93,10 +93,11 @@ class _SearchScreenState extends State<SearchScreen> {
                   child: TextField(
                     controller: _checkInController,
                     onTap: () => _datePicker(_checkInController),
+                    keyboardType: TextInputType.none,
                     decoration: InputDecoration(
                       labelText: 'Check in',
                       suffixIcon: Padding(
-                        padding: const EdgeInsets.all(20),
+                        padding: const EdgeInsets.symmetric(vertical: 17),
                         child: SvgPicture.asset(
                           Assets.icons.calendar,
                           color: ThemeColors.grey300,
@@ -112,10 +113,11 @@ class _SearchScreenState extends State<SearchScreen> {
                   child: TextField(
                     controller: _checkOutController,
                     onTap: () => _datePicker(_checkOutController),
+                    keyboardType: TextInputType.none,
                     decoration: InputDecoration(
                       labelText: 'Check out',
                       suffixIcon: Padding(
-                        padding: const EdgeInsets.all(20),
+                        padding: const EdgeInsets.symmetric(vertical: 17),
                         child: SvgPicture.asset(
                           Assets.icons.calendar,
                           color: ThemeColors.grey300,

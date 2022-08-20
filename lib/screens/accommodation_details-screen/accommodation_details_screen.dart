@@ -8,6 +8,7 @@ import '../../models/accommodation.dart';
 
 import '../../shared/stars_list.dart';
 import '../../shared/top_navbar.dart';
+import '../../shared/book_stay_button.dart';
 
 class AccommodationDetailsScreen extends StatefulWidget {
   @override
@@ -25,16 +26,10 @@ class _AccommodationDetailsScreenState
         ModalRoute.of(context)!.settings.arguments as Accommodation;
     return Scaffold(
       extendBodyBehindAppBar: true,
-      floatingActionButton: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        width: double.infinity,
-        child: ElevatedButton(
-          onPressed: () {},
-          child: Text(
-            'BOOK YOUR STAY',
-            style: textTheme.button!.copyWith(color: ThemeColors.white),
-          ),
-        ),
+      floatingActionButton: BookStayButton(
+        function: () {
+          router.navigateTo(context, Routes.bookStayScreen, accommodation);
+        },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       resizeToAvoidBottomInset: false,
@@ -101,7 +96,8 @@ class _AccommodationDetailsScreenState
                                     accommodation.title,
                                     style: textTheme.headline6,
                                   ),
-                            StarsList(categorization: 4),
+                            StarsList(
+                                categorization: accommodation.categorization),
                             Text(accommodation.shortDescription!,
                                 style: textTheme.bodyText2!
                                     .copyWith(color: ThemeColors.grey500)),

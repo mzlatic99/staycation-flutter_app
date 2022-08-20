@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "269060470732",
+    "project_id": "flutter-staycation",
+    "storage_bucket": "flutter-staycation.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:269060470732:android:7a0ae3ad5fabd0c9738f69",
+        "android_client_info": {
+          "package_name": "com.example.devcademy_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "269060470732-e5ddt7uaoaifurjn9v6ss7r6g7t1nnkm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbg-odjQfKFalDSL9TopBMHc9jEnyqzaA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "269060470732-e5ddt7uaoaifurjn9v6ss7r6g7t1nnkm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

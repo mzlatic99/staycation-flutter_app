@@ -11,6 +11,7 @@ import 'screens/my_bookings-screen/my_bookings_screen.dart';
 import 'screens/my_places-screen/my_places_screen.dart';
 import 'screens/add_new_place-screen/add_new_place_screen.dart';
 import 'screens/search-screen/search_screen.dart';
+import 'screens/book_stay-screen/book_stay_screen.dart';
 
 import './providers/accommodations_provider.dart';
 
@@ -35,6 +36,7 @@ class App extends StatelessWidget {
           Routes.myPlacesScreen: (context) => MyPlacesScreen(),
           Routes.addNewPlaceScreen: (context) => AddNewPlaceScreen(),
           Routes.searchScreen: (context) => SearchScreen(),
+          Routes.bookStayScreen: (context) => BookStayScreen(),
         },
       ),
     );

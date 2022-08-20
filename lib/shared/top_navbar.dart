@@ -36,7 +36,12 @@ class TopNavBar extends StatelessWidget with PreferredSizeWidget {
                 const SizedBox(
                   width: 32,
                 ),
-                Text(title, style: textTheme.headline6),
+                Text(
+                  title,
+                  style: textTheme.headline6!.copyWith(
+                    color: ThemeColors.teal800,
+                  ),
+                ),
               ],
             )
           : Text(title, style: textTheme.headline6),

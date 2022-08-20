@@ -103,19 +103,19 @@ class MyPlaceCard extends StatelessWidget {
                       child: Text(
                         accommodation.title,
                         style: textTheme.bodyText1!
-                            .merge(TextStyle(color: ThemeColors.black)),
+                            .copyWith(color: ThemeColors.black),
                       ),
                     ),
                     Text(
                       accommodation.location,
                       style: textTheme.bodyText2!
-                          .merge(TextStyle(color: ThemeColors.grey300)),
+                          .copyWith(color: ThemeColors.grey300),
                     ),
                     Text(
                       'Renting an entire unit',
-                      style: textTheme.bodyText2!.merge(TextStyle(
+                      style: textTheme.bodyText2!.copyWith(
                           color: ThemeColors.teal800,
-                          fontWeight: FontWeight.w600)),
+                          fontWeight: FontWeight.w600),
                     ),
                     StarsList(categorization: accommodation.categorization),
                   ],

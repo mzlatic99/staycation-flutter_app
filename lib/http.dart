@@ -100,6 +100,13 @@ class HTTP {
     );
     return response;
   }
+
+  Future<Response> bookPlace(Map<String, dynamic> map) {
+    return client.post(
+      'homes-all/1/reservation',
+      data: map,
+    );
+  }
 }
 
 final http = HTTP();

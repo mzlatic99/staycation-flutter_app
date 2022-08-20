@@ -76,6 +76,7 @@ class _AddNewPlaceScreenState extends State<AddNewPlaceScreen> {
         actionIcons: [
           GestureDetector(
             onTap: () {
+              FocusScope.of(context).unfocus();
               accommodationReceiver == null
                   ? _saveForm(false)
                   : _saveForm(true);
@@ -231,6 +232,7 @@ class _AddNewPlaceScreenState extends State<AddNewPlaceScreen> {
                       ? null
                       : _editedAccommodation!.price.toString(),
                   decoration: const InputDecoration(labelText: 'Price'),
+                  keyboardType: TextInputType.number,
                   textInputAction: TextInputAction.next,
                   onSaved: (v) =>
                       accommodation['price'] = int.parse(v as String),
