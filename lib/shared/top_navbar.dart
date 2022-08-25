@@ -5,7 +5,7 @@ import '../theme.dart';
 
 class TopNavBar extends StatelessWidget with PreferredSizeWidget {
   final String title;
-  final List<GestureDetector>? actionIcons;
+  final List<Widget>? actionIcons;
   final GestureDetector? leading;
 
   TopNavBar({required this.title, this.actionIcons, this.leading});

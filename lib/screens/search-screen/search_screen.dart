@@ -7,6 +7,7 @@ import '../../router.dart';
 import '../../theme.dart';
 
 import '../../shared/top_navbar.dart';
+import '../../shared/book_stay_button.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -261,10 +262,8 @@ class _SearchScreenState extends State<SearchScreen> {
                 ),
               ],
             ),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
+            BookStayButton(
+                function: () {
                   _searchConditionsMap['searchValue'] = _searchController.text;
                   _searchConditionsMap['checkIn'] = _checkInController.text;
                   _searchConditionsMap['checkOut'] = _checkOutController.text;
@@ -275,14 +274,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   router.navigateTo(context, Routes.homesGuestsLoveScreen,
                       _searchConditionsMap);
                 },
-                child: Text(
-                  'SEARCH',
-                  style: textTheme.button!.copyWith(
-                    color: ThemeColors.white,
-                  ),
-                ),
-              ),
-            ),
+                title: 'SEARCH'),
           ],
         ),
       ),

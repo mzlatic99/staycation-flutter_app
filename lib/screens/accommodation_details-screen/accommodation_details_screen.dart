@@ -26,10 +26,14 @@ class _AccommodationDetailsScreenState
         ModalRoute.of(context)!.settings.arguments as Accommodation;
     return Scaffold(
       extendBodyBehindAppBar: true,
-      floatingActionButton: BookStayButton(
-        function: () {
-          router.navigateTo(context, Routes.bookStayScreen, accommodation);
-        },
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: BookStayButton(
+          title: 'BOOK YOUR STAY',
+          function: () {
+            router.navigateTo(context, Routes.bookStayScreen, accommodation);
+          },
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       resizeToAvoidBottomInset: false,

@@ -62,8 +62,8 @@ class _BookStayScreenState extends State<BookStayScreen> {
     final isValid = _formKey.currentState!.validate();
     if (isValid) {
       _formKey.currentState!.save();
-      reservation['id'] = '1';
-      reservation['homes-allId'] = accommodation.id;
+      reservation['id'] = accommodation.id.toString();
+      reservation['homes-allId'] = accommodation.id.toString();
       final difference =
           daysBetween(reservation['checkIn'], reservation['checkOut']);
       showDialog(
@@ -95,7 +95,7 @@ class _BookStayScreenState extends State<BookStayScreen> {
                   '${reservation['numberOfGuests']} guests',
                 ),
                 Text(
-                  '${(DateFormat.yMMMd().format(reservation['checkIn'])).toString()} - ${(DateFormat.yMMMd().format(reservation['checkOut'])).toString()}',
+                  '${DateFormat.yMMMd().format(reservation['checkIn'])} - ${DateFormat.yMMMd().format(reservation['checkOut'])}',
                 ),
                 Text(
                   '${accommodation.accommodationType![0].toUpperCase()}${accommodation.accommodationType!.substring(1)}',
@@ -160,11 +160,15 @@ class _BookStayScreenState extends State<BookStayScreen> {
           ),
         ),
       ),
-      floatingActionButton: BookStayButton(
-        function: () {
-          FocusScope.of(context).unfocus();
-          _saveForm(accommodation);
-        },
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: BookStayButton(
+          title: 'BOOK YOUR STAY',
+          function: () {
+            FocusScope.of(context).unfocus();
+            _saveForm(accommodation);
+          },
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: Container(
@@ -360,7 +364,7 @@ class _BookStayScreenState extends State<BookStayScreen> {
                                   DateFormat('MMM d, yyyy').parse(v!),
                               validator: (v) {
                                 if (v!.isEmpty) {
-                                  return 'Please enter a number.';
+                                  return 'Please enter a date.';
                                 }
                                 return null;
                               },

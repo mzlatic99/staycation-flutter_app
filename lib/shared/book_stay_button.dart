@@ -4,17 +4,18 @@ import '../theme.dart';
 
 class BookStayButton extends StatelessWidget {
   final Function function;
-  BookStayButton({required this.function});
+  final String title;
+  BookStayButton({required this.function, required this.title});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      height: 42,
       width: double.infinity,
       child: ElevatedButton(
         onPressed: () => function(),
         child: Text(
-          'BOOK YOUR STAY',
+          title,
           style: textTheme.button!.copyWith(color: ThemeColors.white),
         ),
       ),

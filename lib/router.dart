@@ -10,6 +10,7 @@ class Routes {
   static String addNewPlaceScreen = '/addNewPlaceScreen';
   static String searchScreen = '/searchScreen';
   static String bookStayScreen = '/bookStayScreen';
+  static String authenticationScreen = '/authenticationScreen';
 }
 
 class Router {
