@@ -7,6 +7,7 @@ import '../../router.dart';
 import '../../theme.dart';
 
 import '../../shared/top_navbar.dart';
+import '../../shared/book_stay_button.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -93,10 +94,11 @@ class _SearchScreenState extends State<SearchScreen> {
                   child: TextField(
                     controller: _checkInController,
                     onTap: () => _datePicker(_checkInController),
+                    keyboardType: TextInputType.none,
                     decoration: InputDecoration(
                       labelText: 'Check in',
                       suffixIcon: Padding(
-                        padding: const EdgeInsets.all(20),
+                        padding: const EdgeInsets.symmetric(vertical: 17),
                         child: SvgPicture.asset(
                           Assets.icons.calendar,
                           color: ThemeColors.grey300,
@@ -112,10 +114,11 @@ class _SearchScreenState extends State<SearchScreen> {
                   child: TextField(
                     controller: _checkOutController,
                     onTap: () => _datePicker(_checkOutController),
+                    keyboardType: TextInputType.none,
                     decoration: InputDecoration(
                       labelText: 'Check out',
                       suffixIcon: Padding(
-                        padding: const EdgeInsets.all(20),
+                        padding: const EdgeInsets.symmetric(vertical: 17),
                         child: SvgPicture.asset(
                           Assets.icons.calendar,
                           color: ThemeColors.grey300,
@@ -259,10 +262,8 @@ class _SearchScreenState extends State<SearchScreen> {
                 ),
               ],
             ),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
+            BookStayButton(
+                function: () {
                   _searchConditionsMap['searchValue'] = _searchController.text;
                   _searchConditionsMap['checkIn'] = _checkInController.text;
                   _searchConditionsMap['checkOut'] = _checkOutController.text;
@@ -273,14 +274,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   router.navigateTo(context, Routes.homesGuestsLoveScreen,
                       _searchConditionsMap);
                 },
-                child: Text(
-                  'SEARCH',
-                  style: textTheme.button!.copyWith(
-                    color: ThemeColors.white,
-                  ),
-                ),
-              ),
-            ),
+                title: 'SEARCH'),
           ],
         ),
       ),

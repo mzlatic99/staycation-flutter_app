@@ -32,4 +32,5 @@ class _Images {
   String barcelona = 'assets/images/barcelona.jpg';
   String newYork = 'assets/images/new_york.jpg';
   String tokyo = 'assets/images/tokyo.jpg';
+  String authbg = 'assets/images/loginBackground.png';
 }

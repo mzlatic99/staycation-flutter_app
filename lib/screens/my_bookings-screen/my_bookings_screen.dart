@@ -61,7 +61,7 @@ class MyBookingsScreen extends StatelessWidget {
                         checkIn: reservation.checkIn,
                         checkOut: reservation.checkOut,
                         accommodation: Accommodation(
-                          id: accommodation.id,
+                          id: reservation.homesAllId,
                           imageUrl: accommodation.imageUrl,
                           title: accommodation.title,
                           location: accommodation.location,

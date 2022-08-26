@@ -11,6 +11,8 @@ import 'screens/my_bookings-screen/my_bookings_screen.dart';
 import 'screens/my_places-screen/my_places_screen.dart';
 import 'screens/add_new_place-screen/add_new_place_screen.dart';
 import 'screens/search-screen/search_screen.dart';
+import 'screens/book_stay-screen/book_stay_screen.dart';
+import 'screens/authentication-screen/authentication_screen.dart';
 
 import './providers/accommodations_provider.dart';
 
@@ -24,7 +26,7 @@ class App extends StatelessWidget {
       child: MaterialApp(
         theme: theme,
         debugShowCheckedModeBanner: false,
-        initialRoute: Routes.homeScreen,
+        initialRoute: Routes.authenticationScreen,
         routes: {
           Routes.homeScreen: (context) => HomeScreen(),
           Routes.accommodationDetailsScreen: (context) =>
@@ -35,6 +37,8 @@ class App extends StatelessWidget {
           Routes.myPlacesScreen: (context) => MyPlacesScreen(),
           Routes.addNewPlaceScreen: (context) => AddNewPlaceScreen(),
           Routes.searchScreen: (context) => SearchScreen(),
+          Routes.bookStayScreen: (context) => BookStayScreen(),
+          Routes.authenticationScreen: (context) => AuthenticationScreen(),
         },
       ),
     );

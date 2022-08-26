@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 
 import '../../theme.dart';
 import '../../assets.dart';
@@ -10,7 +12,33 @@ import '../../shared/bottom_navbar.dart';
 import 'widgets/homes_guests_love.dart';
 import 'widgets/popular_locations.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final _auth = FirebaseAuth.instance;
+  late User loggedInUser;
+
+  void getCurrentUser() async {
+    try {
+      final User? user = _auth.currentUser;
+
+      if (user != null) {
+        loggedInUser = user;
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getCurrentUser();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,14 +54,50 @@ class HomeScreen extends StatelessWidget {
               color: ThemeColors.teal800,
             ),
           ),
-          GestureDetector(
-            onTap: () {},
-            child: SvgPicture.asset(
-              Assets.icons.more,
-              color: ThemeColors.teal800,
-              height: 18,
+          Container(
+            width: 25,
+            padding: const EdgeInsets.only(right: 10),
+            child: DropdownButtonHideUnderline(
+              child: DropdownButton2(
+                  dropdownDecoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  isExpanded: true,
+                  scrollbarAlwaysShow: false,
+                  dropdownWidth: 153,
+                  icon: SvgPicture.asset(
+                    Assets.icons.more,
+                    color: ThemeColors.teal800,
+                    height: 18,
+                  ),
+                  items: [
+                    DropdownMenuItem(
+                      value: 'logout',
+                      child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Logout',
+                              style: textTheme.bodyText2!.copyWith(
+                                color: ThemeColors.teal800,
+                              ),
+                            ),
+                            SvgPicture.asset(
+                              Assets.icons.logout,
+                              color: ThemeColors.teal800,
+                            ),
+                          ]),
+                    ),
+                  ],
+                  onChanged: (item) {
+                    _auth.signOut();
+                    router.navigateTo(
+                        context, Routes.authenticationScreen, null);
+                  }),
             ),
-          )
+          ),
         ],
       ),
       body: SingleChildScrollView(

@@ -5,7 +5,7 @@ import '../theme.dart';
 
 class TopNavBar extends StatelessWidget with PreferredSizeWidget {
   final String title;
-  final List<GestureDetector>? actionIcons;
+  final List<Widget>? actionIcons;
   final GestureDetector? leading;
 
   TopNavBar({required this.title, this.actionIcons, this.leading});
@@ -36,7 +36,12 @@ class TopNavBar extends StatelessWidget with PreferredSizeWidget {
                 const SizedBox(
                   width: 32,
                 ),
-                Text(title, style: textTheme.headline6),
+                Text(
+                  title,
+                  style: textTheme.headline6!.copyWith(
+                    color: ThemeColors.teal800,
+                  ),
+                ),
               ],
             )
           : Text(title, style: textTheme.headline6),
