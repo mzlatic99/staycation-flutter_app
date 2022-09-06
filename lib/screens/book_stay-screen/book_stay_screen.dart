@@ -13,6 +13,8 @@ import '../../shared/book_stay_button.dart';
 import '../../shared/stars_list.dart';
 
 class BookStayScreen extends StatefulWidget {
+  const BookStayScreen({Key? key}) : super(key: key);
+
   @override
   State<BookStayScreen> createState() => _BookStayScreenState();
 }

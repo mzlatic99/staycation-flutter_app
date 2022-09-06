@@ -28,6 +28,7 @@ class App extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: Routes.authenticationScreen,
         routes: {
+          Routes.authenticationScreen: (context) => AuthenticationScreen(),
           Routes.homeScreen: (context) => HomeScreen(),
           Routes.accommodationDetailsScreen: (context) =>
               AccommodationDetailsScreen(),
@@ -38,7 +39,6 @@ class App extends StatelessWidget {
           Routes.addNewPlaceScreen: (context) => AddNewPlaceScreen(),
           Routes.searchScreen: (context) => SearchScreen(),
           Routes.bookStayScreen: (context) => BookStayScreen(),
-          Routes.authenticationScreen: (context) => AuthenticationScreen(),
         },
       ),
     );

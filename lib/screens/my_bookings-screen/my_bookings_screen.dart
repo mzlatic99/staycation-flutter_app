@@ -17,6 +17,8 @@ import '../../shared/homes_guests_love_card.dart';
 
 class MyBookingsScreen extends StatelessWidget {
   final List<HomesGuestsLoveCard> _myReservationsList = [];
+
+  MyBookingsScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final accommodationData =
@@ -31,7 +33,7 @@ class MyBookingsScreen extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavBar(index: 1),
+      bottomNavigationBar: const BottomNavBar(index: 1),
       body: SafeArea(
         child: Column(
           children: [
@@ -50,12 +52,9 @@ class MyBookingsScreen extends StatelessWidget {
                 List<Reservation> reservations = snapshot.data;
                 List<Accommodation> accommodations =
                     accommodationData.accommodations;
-
                 for (var reservation in reservations) {
-                  var hallId = int.parse(reservation.homesAllId);
-                  var accommodation = accommodations
-                      .firstWhere((e) => int.parse(e.id) == hallId);
-
+                  var accommodation = accommodations.firstWhere((e) =>
+                      int.parse(e.id) == int.parse(reservation.homesAllId));
                   _myReservationsList.add(
                     HomesGuestsLoveCard(
                         checkIn: reservation.checkIn,

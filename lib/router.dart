@@ -1,7 +1,8 @@
 import 'package:flutter/widgets.dart';
 
 class Routes {
-  static String homeScreen = '/';
+  static String authenticationScreen = '/';
+  static String homeScreen = '/homeScreen';
   static String accommodationDetailsScreen = '/accommodationDetailsScreen';
   static String homesGuestsLoveScreen = '/homesGuestsLoveScreen';
   static String myBookingsScreen = '/myBookingsScreen';
@@ -10,7 +11,6 @@ class Routes {
   static String addNewPlaceScreen = '/addNewPlaceScreen';
   static String searchScreen = '/searchScreen';
   static String bookStayScreen = '/bookStayScreen';
-  static String authenticationScreen = '/authenticationScreen';
 }
 
 class Router {

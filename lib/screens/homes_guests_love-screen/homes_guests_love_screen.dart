@@ -12,6 +12,8 @@ import '../../shared/homes_guests_love_card.dart';
 
 class HomesGuestsLoveScreen extends StatelessWidget {
   final List<HomesGuestsLoveCard> _homesGuestsLoveList = [];
+
+  HomesGuestsLoveScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final accommodationData =

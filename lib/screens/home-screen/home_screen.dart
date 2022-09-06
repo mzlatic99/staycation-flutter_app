@@ -13,6 +13,8 @@ import 'widgets/homes_guests_love.dart';
 import 'widgets/popular_locations.dart';
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -108,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavBar(index: 0),
+      bottomNavigationBar: const BottomNavBar(index: 0),
     );
   }
 }

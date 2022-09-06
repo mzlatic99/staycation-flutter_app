@@ -15,7 +15,6 @@ class HTTP {
   late Dio client;
   HTTP() {
     client = Dio(BaseOptions(
-      //TODO: replace with real backend url
       baseUrl: 'https://62a17fb4cd2e8da9b0f28a7a.mockapi.io/api/staycation/',
       receiveDataWhenStatusError: true,
       contentType: 'application/json',

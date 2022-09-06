@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 import '../theme.dart';
 
@@ -8,7 +7,8 @@ class TopNavBar extends StatelessWidget with PreferredSizeWidget {
   final List<Widget>? actionIcons;
   final GestureDetector? leading;
 
-  TopNavBar({required this.title, this.actionIcons, this.leading});
+  TopNavBar({Key? key, required this.title, this.actionIcons, this.leading})
+      : super(key: key);
 
   List<Widget> newActionIcons = [];
   void addActionIcons() {

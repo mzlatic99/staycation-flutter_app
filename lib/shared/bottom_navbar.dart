@@ -1,21 +1,19 @@
 import 'package:devcademy_flutter/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 import '../theme.dart';
-import '../assets.dart';
 import '../router.dart';
 
 class BottomNavBar extends StatelessWidget {
   final int index;
-  BottomNavBar({required this.index});
+  const BottomNavBar({Key? key, required this.index}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       onTap: (int curr) {
-        if (index == curr)
-          ;
-        else {
+        if (index == curr) {
+          return;
+        } else {
           switch (curr) {
             case 0:
               router.navigateTo(context, Routes.homeScreen, null);
@@ -30,41 +28,20 @@ class BottomNavBar extends StatelessWidget {
               break;
           }
         }
-        // if (index == 0) router.navigateTo(context, Routes.homeScreen);
-        // if (index == 1) router.navigateTo(context, Routes.myBookingsScreen);
-        // if (index == 2) router.navigateTo(context, Routes.myPlacesScreen);
       },
       currentIndex: index,
       items: [
         BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              Assets.icons.home,
-              color: ThemeColors.grey500,
-            ),
-            activeIcon: SvgPicture.asset(
-              Assets.icons.home,
-              color: ThemeColors.mint500,
-            ),
+            icon: Icon(Icons.home, color: ThemeColors.grey500),
+            activeIcon: Icon(Icons.home, color: ThemeColors.mint500),
             label: 'Home'),
         BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              Assets.icons.list,
-              color: ThemeColors.grey500,
-            ),
-            activeIcon: SvgPicture.asset(
-              Assets.icons.list,
-              color: ThemeColors.mint500,
-            ),
+            icon: Icon(Icons.list, color: ThemeColors.grey500),
+            activeIcon: Icon(Icons.list, color: ThemeColors.mint500),
             label: 'My Bookings'),
         BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              Assets.icons.places,
-              color: ThemeColors.grey500,
-            ),
-            activeIcon: SvgPicture.asset(
-              Assets.icons.places,
-              color: ThemeColors.mint500,
-            ),
+            icon: Icon(Icons.location_city, color: ThemeColors.grey500),
+            activeIcon: Icon(Icons.location_city, color: ThemeColors.mint500),
             label: 'My Places')
       ],
     );

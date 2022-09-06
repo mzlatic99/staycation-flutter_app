@@ -20,7 +20,7 @@ class _SearchScreenState extends State<SearchScreen> {
   final _searchController = TextEditingController();
   final _checkInController = TextEditingController();
   final _checkOutController = TextEditingController();
-  Map<String, dynamic> _searchConditionsMap = {
+  final Map<String, dynamic> _searchConditionsMap = {
     'searchValue': null,
     'checkIn': null,
     'checkOut': null,

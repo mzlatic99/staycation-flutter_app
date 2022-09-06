@@ -11,6 +11,8 @@ import '../../shared/top_navbar.dart';
 import '../../shared/book_stay_button.dart';
 
 class AccommodationDetailsScreen extends StatefulWidget {
+  const AccommodationDetailsScreen({Key? key}) : super(key: key);
+
   @override
   State<AccommodationDetailsScreen> createState() =>
       _AccommodationDetailsScreenState();
