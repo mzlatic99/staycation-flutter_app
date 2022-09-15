@@ -1,16 +1,36 @@
 # devcademy_flutter
 
-A new Flutter project.
+Flutter app for booking and listing apartments. 
 
-## Getting Started
+Made as part of Agency04 Devacademy.
 
-This project is a starting point for a Flutter application.
+### Credentials to enter the app
 
-A few resources to get you started if this is your first Flutter project:
+Username: test@flutter.dart
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Password: devcademy
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Screenshots
+
+<p float="left">
+  <img src="/screenshots/authentication.png" width="32%" />
+  <img src="/screenshots/hs1.png" width="32%" /> 
+  <img src="/screenshots/hs2.png" width="32%" />
+</p>
+<p float="left">
+  <img src="/screenshots/search.png" width="32%" />
+  <img src="/screenshots/popular.png" width="32%" /> 
+  <img src="/screenshots/homes.png" width="32%" />
+</p>
+<p float="left">
+  <img src="/screenshots/details1.png" width="32%" />
+  <img src="/screenshots/details2.png" width="32%" /> 
+  <img src="/screenshots/book.png" width="32%" />
+</p>
+<p float="left">
+  <img src="/screenshots/addnew.png" width="32%" />
+  <img src="/screenshots/logout.png" width="32%" />
+</p>
+
+
+
