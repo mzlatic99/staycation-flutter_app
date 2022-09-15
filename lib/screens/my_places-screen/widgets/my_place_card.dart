@@ -85,7 +85,7 @@ class MyPlaceCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
                 child: Image.network(
                   accommodation.imageUrl,
-                  width: 187,
+                  width: MediaQuery.of(context).size.width * 0.5 - 20,
                   height: 154,
                   fit: BoxFit.cover,
                 ),
@@ -99,7 +99,8 @@ class MyPlaceCard extends StatelessWidget {
                   children: [
                     Container(
                       constraints: BoxConstraints(
-                          maxWidth: MediaQuery.of(context).size.width * 0.4),
+                          maxWidth:
+                              MediaQuery.of(context).size.width * 0.5 - 40),
                       child: Text(
                         accommodation.title,
                         style: textTheme.bodyText1!

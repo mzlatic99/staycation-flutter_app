@@ -174,7 +174,7 @@ class _BookStayScreenState extends State<BookStayScreen> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: Container(
-        height: MediaQuery.of(context).size.height * 0.8,
+        height: MediaQuery.of(context).size.height,
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
@@ -211,7 +211,8 @@ class _BookStayScreenState extends State<BookStayScreen> {
                           Container(
                             constraints: BoxConstraints(
                                 maxWidth:
-                                    MediaQuery.of(context).size.width * 0.5),
+                                    MediaQuery.of(context).size.width * 0.5 -
+                                        8),
                             child: Text(
                               accommodation.title,
                               style: textTheme.bodyText1!.copyWith(
@@ -254,7 +255,7 @@ class _BookStayScreenState extends State<BookStayScreen> {
               key: _formKey,
               child: SingleChildScrollView(
                 child: SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.4,
+                  height: MediaQuery.of(context).size.height * 0.5 - 20,
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -323,14 +324,16 @@ class _BookStayScreenState extends State<BookStayScreen> {
                               keyboardType: TextInputType.none,
                               decoration: InputDecoration(
                                 labelText: 'Check in',
-                                suffixIcon: Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 17),
-                                  child: SvgPicture.asset(
-                                    Assets.icons.calendar,
-                                    color: ThemeColors.grey300,
-                                  ),
-                                ),
+                                suffixIcon: _checkInController.value == null
+                                    ? Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 17),
+                                        child: SvgPicture.asset(
+                                          Assets.icons.calendar,
+                                          color: ThemeColors.grey300,
+                                        ),
+                                      )
+                                    : null,
                               ),
                               onSaved: (v) => reservation['checkIn'] =
                                   DateFormat('MMM d, yyyy').parse(v!),
@@ -353,14 +356,16 @@ class _BookStayScreenState extends State<BookStayScreen> {
                               keyboardType: TextInputType.none,
                               decoration: InputDecoration(
                                 labelText: 'Check out',
-                                suffixIcon: Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 17),
-                                  child: SvgPicture.asset(
-                                    Assets.icons.calendar,
-                                    color: ThemeColors.grey300,
-                                  ),
-                                ),
+                                suffixIcon: _checkOutController.value == null
+                                    ? Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 17),
+                                        child: SvgPicture.asset(
+                                          Assets.icons.calendar,
+                                          color: ThemeColors.grey300,
+                                        ),
+                                      )
+                                    : null,
                               ),
                               onSaved: (v) => reservation['checkOut'] =
                                   DateFormat('MMM d, yyyy').parse(v!),
