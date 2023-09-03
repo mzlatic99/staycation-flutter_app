@@ -1,4 +1,4 @@
-# devcademy_flutter
+# Staycation Flutter App
 
 Flutter app for booking and listing apartments. 
 
